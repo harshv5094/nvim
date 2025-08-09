@@ -28,6 +28,8 @@ return {
 			end,
 		},
 	},
+
+  -- Custom Status Line
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'echasnovski/mini.icons' },

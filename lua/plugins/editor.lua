@@ -65,6 +65,14 @@ return {
 				end,
 				desc = "Telescope -> Help Tags",
 			},
+      {
+				"<leader>/",
+				function()
+					local builtin = require("telescope.builtin")
+					builtin.live_grep()
+				end,
+				desc = "Telescope -> Help Tags",
+      },
 			{
 				"sf",
 				function()
@@ -89,34 +97,34 @@ return {
 				end,
 				desc = "Telescope -> Browse File",
 			},
-			-- {
-			-- 	";nn",
-			-- 	function()
-			-- 		require("utils.notes").create_note()
-			-- 	end,
-			-- 	desc = "Notes -> New Markdown Note",
-			-- },
-			-- {
-			-- 	";nt",
-			-- 	function()
-			-- 		require("utils.notes").search_by_tag()
-			-- 	end,
-			-- 	desc = "Notes -> Search Notes by Tag",
-			-- },
-			-- {
-			-- 	";nf",
-			-- 	function()
-			-- 		require("utils.notes").find_notes()
-			-- 	end,
-			-- 	desc = "Notes -> Find Notes",
-			-- },
-			-- {
-			-- 	";ns",
-			-- 	function()
-			-- 		require("utils.notes").sync_to_remote()
-			-- 	end,
-			-- 	desc = "Notes -> Sync to My Remote Repos",
-			-- },
+			{
+				";nn",
+				function()
+					require("utils.notes").create_note()
+				end,
+				desc = "Notes -> New Markdown Note",
+			},
+			{
+				";nt",
+				function()
+					require("utils.notes").search_by_tag()
+				end,
+				desc = "Notes -> Search Notes by Tag",
+			},
+			{
+				";nf",
+				function()
+					require("utils.notes").find_notes()
+				end,
+				desc = "Notes -> Find Notes",
+			},
+			{
+				";ns",
+				function()
+					require("utils.notes").sync_to_remote()
+				end,
+				desc = "Notes -> Sync to My Remote Repos",
+			},
 		},
 		config = function(_, opts)
 			local telescope = require("telescope")
