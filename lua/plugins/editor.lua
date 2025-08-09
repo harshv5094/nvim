@@ -58,12 +58,20 @@ return {
 				desc = "Telescope -> Buffers",
 			},
 			{
-				"<leader>h",
+				"<leader>sh",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.help_tags()
 				end,
 				desc = "Telescope -> Help Tags",
+			},
+			{
+				"<leader>sk",
+				function()
+					local builtin = require("telescope.builtin")
+					builtin.keymaps()
+				end,
+				desc = "Telescope -> Keymaps",
 			},
       {
 				"<leader>/",
@@ -71,7 +79,7 @@ return {
 					local builtin = require("telescope.builtin")
 					builtin.live_grep()
 				end,
-				desc = "Telescope -> Help Tags",
+				desc = "Telescope -> Live Grep",
       },
 			{
 				"sf",
