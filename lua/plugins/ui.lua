@@ -29,15 +29,15 @@ return {
 		},
 	},
 
-  -- Custom Status Line
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'echasnovski/mini.icons' },
-    config = function()
-      local lualine = require('lualine')
-      lualine.setup({
-        theme = 'tokyonight'
-      })
-    end
-  }
+	-- Custom Status Line
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			local lualine = require("lualine")
+			lualine.setup({
+				theme = "tokyonight",
+			})
+		end,
+	},
 }

@@ -10,7 +10,7 @@ return {
 				build = "make",
 			},
 			"nvim-telescope/telescope-file-browser.nvim",
-      'echasnovski/mini.icons',
+      'nvim-tree/nvim-web-devicons',
 		},
 		keys = {
 			{
@@ -38,7 +38,7 @@ return {
 				desc = "Telescope -> Resume",
 			},
 			{
-				";f",
+				"<leader><space>",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.find_files({
