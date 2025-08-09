@@ -91,6 +91,13 @@ return {
 				desc = "Telescope -> Keymaps",
 			},
 			{
+				"<leader>sg",
+				function()
+					local builtin = require("telescope.builtin")
+					builtin.grep_string({ search = vim.fn.input("Grep > ") })
+				end,
+			},
+			{
 				"<leader>/",
 				function()
 					local builtin = require("telescope.builtin")
