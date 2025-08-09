@@ -34,7 +34,7 @@ return {
 				";;",
 				function()
 					local builtin = require("telescope.builtin")
-					builtin.resume(require("telescope.themes"))
+					builtin.resume()
 				end,
 				desc = "Telescope -> Resume",
 			},
@@ -49,6 +49,22 @@ return {
 					})
 				end,
 				desc = "Telescope -> Find Files",
+			},
+			{
+				"<leader>gf",
+				function()
+					local builtin = require("telescope.builtin")
+					builtin.git_files()
+				end,
+				desc = "Telescope -> Git Files",
+			},
+			{
+				"<leader>gs",
+				function()
+					local builtin = require("telescope.builtin")
+					builtin.git_status()
+				end,
+				desc = "Telescope -> Git Status",
 			},
 			{
 				"<leader>,",
@@ -82,7 +98,6 @@ return {
 				end,
 				desc = "Telescope -> Live Grep",
 			},
-			{},
 			{
 				"sf",
 				function()

@@ -1,5 +1,4 @@
 return {
-	-- .env hiding plugin
 	"laytan/cloak.nvim",
 	event = "VeryLazy",
 	config = function()
