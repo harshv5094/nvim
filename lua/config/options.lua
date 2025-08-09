@@ -34,6 +34,7 @@ opt.splitbelow = true -- Put new windows below current
 opt.splitright = true -- Put new windows right of current
 opt.splitkeep = "cursor"
 opt.mouse = "a"
+opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

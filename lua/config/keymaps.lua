@@ -39,3 +39,6 @@ map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = " Set Script To Exec
 
 -- Lazy Keymap
 map("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Lazy", silent = true })
+
+-- Quit Nvim
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
