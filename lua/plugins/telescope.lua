@@ -10,7 +10,7 @@ return {
 				build = "make",
 			},
 			"nvim-telescope/telescope-file-browser.nvim",
-      'nvim-tree/nvim-web-devicons',
+			"nvim-tree/nvim-web-devicons",
 		},
 		keys = {
 			{
@@ -33,7 +33,8 @@ return {
 			{
 				";;",
 				function()
-					require("telescope.builtin").resume()
+					local builtin = require("telescope.builtin")
+					builtin.resume(require("telescope.themes"))
 				end,
 				desc = "Telescope -> Resume",
 			},
@@ -73,14 +74,15 @@ return {
 				end,
 				desc = "Telescope -> Keymaps",
 			},
-      {
+			{
 				"<leader>/",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.live_grep()
 				end,
 				desc = "Telescope -> Live Grep",
-      },
+			},
+			{},
 			{
 				"sf",
 				function()
@@ -88,7 +90,6 @@ return {
 					local function telescope_buffer_dir()
 						return vim.fn.expand("%:p:h")
 					end
-
 					telescope.extensions.file_browser.file_browser({
 						path = "%:p:h",
 						cwd = telescope_buffer_dir(),
@@ -138,7 +139,6 @@ return {
 			local telescope = require("telescope")
 			local actions = require("telescope.actions")
 			local fb_actions = require("telescope").extensions.file_browser.actions
-
 			opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
 				wrap_results = true,
 				layout_strategy = "horizontal",
@@ -154,7 +154,6 @@ return {
 					},
 				},
 			})
-
 			opts.extensions = {
 				file_browser = {
 					-- theme = "ivy",
@@ -191,34 +190,5 @@ return {
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
 		end,
-	},
-
-	-- Multiple close buffer plugin
-	{
-		"kazhala/close-buffers.nvim",
-		event = "VeryLazy",
-		keys = {
-			{
-				"<leader>bh",
-				function()
-					require("close_buffers").delete({ type = "hidden" })
-				end,
-				desc = "Close Hidden Buffers",
-			},
-			{
-				"<leader>bu",
-				function()
-					require("close_buffers").delete({ type = "nameless" })
-				end,
-				desc = "Close Nameless Buffers",
-			},
-      {
-        "<leader>bd",
-				function()
-					require("close_buffers").delete({ type = "this" })
-				end,
-				desc = "Close Nameless Buffers",
-      },
-		},
 	},
 }
