@@ -85,7 +85,7 @@ return {
 
 	-- NOTE: Matching pairs for coding
 	{
-		"echasnovski/mini.pairs",
+		"nvim-mini/mini.pairs",
 		event = { "BufReadPre", "BufNewFile" },
 		version = false,
 		config = function()
