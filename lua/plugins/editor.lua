@@ -10,6 +10,7 @@ return {
 				build = "make",
 			},
 			"nvim-telescope/telescope-file-browser.nvim",
+			"nvim-tree/nvim-web-devicons",
 		},
 		keys = {
 			{
