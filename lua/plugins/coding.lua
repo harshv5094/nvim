@@ -70,9 +70,6 @@ return {
 					},
 				},
 			},
-			appearance = {
-				kind_icons = require("config.icons").symbol_kinds,
-			},
 			fuzzy = { implementation = "lua" },
 		},
 		config = function(_, opts)
