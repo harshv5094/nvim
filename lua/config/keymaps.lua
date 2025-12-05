@@ -29,7 +29,7 @@ map("n", "<C-j>", "<C-w>-", opts)
 map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
 
 -- netrw Directory explore window
-map("n", ";x", "<cmd>Explore<CR>", opts)
+map("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Netrw Explore", silent = true })
 
 -- Automatic find and replace
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace" })

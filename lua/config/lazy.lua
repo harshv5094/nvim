@@ -29,7 +29,6 @@ require("lazy").setup({
 		-- import/override with your plugins
 		{ import = "plugins" },
 	},
-	install = { colorscheme = { "tokyonight" } },
 	checker = {
 		enabled = true,
 		notify = false,

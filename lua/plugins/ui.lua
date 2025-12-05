@@ -70,19 +70,16 @@ return {
 	},
 
 	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
-			preset = "helix",
-		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
+			theme = "gruvbox",
+			sections = {
+				lualine_a = { { "mode", icon = "" } },
 			},
 		},
+		config = function(_, opts)
+			require("lualine").setup(opts)
+		end,
 	},
 }

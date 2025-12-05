@@ -1,6 +1,8 @@
 local g = vim.g
 local opt = vim.opt
 
+g.netrw_winsize = 75
+
 opt.encoding = "utf-8"
 opt.number = true
 opt.relativenumber = true
