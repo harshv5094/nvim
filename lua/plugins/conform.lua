@@ -5,7 +5,7 @@ return {
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
-			sh = { "shfmt" },
+			sh = { "shfmt", args = { "-i", "2" } },
 		},
 		format_on_save = {
 			-- These options will be passed to conform.format()
