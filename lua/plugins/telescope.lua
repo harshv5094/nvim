@@ -3,6 +3,7 @@
 --
 return {
 	"nvim-telescope/telescope.nvim",
+	cmd = "Telescope",
 	dependencies = {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -107,6 +108,13 @@ return {
 			"<leader>sm",
 			function()
 				require("telescope.builtin").man_pages()
+			end,
+			desc = "Telescope -> Man Pages",
+		},
+		{
+			"<leader>cd",
+			function()
+				require("telescope.builtin").diagnostics()
 			end,
 			desc = "Telescope -> Man Pages",
 		},
