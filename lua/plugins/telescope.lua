@@ -50,6 +50,13 @@ return {
 			desc = "Telescope -> Find Files",
 		},
 		{
+			"<leader>:",
+			function()
+				require("telescope.builtin").command_history()
+			end,
+			desc = "Telescope -> Command History",
+		},
+		{
 			"<leader>,",
 			function()
 				local builtin = require("telescope.builtin")
