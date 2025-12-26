@@ -86,16 +86,6 @@ return {
 		end,
 	},
 
-	-- NOTE: Matching pairs for coding
-	{
-		"nvim-mini/mini.pairs",
-		event = { "BufReadPre", "BufNewFile" },
-		version = false,
-		config = function()
-			require("mini.pairs").setup({})
-		end,
-	},
-
 	-- NOTE: Vim Documentation API
 	{
 		"folke/lazydev.nvim",
