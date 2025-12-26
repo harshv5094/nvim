@@ -21,7 +21,7 @@ return {
 		end,
 		keys = {
 			{
-				"<leader>x",
+				"<leader>ff",
 				"<CMD>Pick files<CR>",
 				"mini.pick -> Files",
 			},
