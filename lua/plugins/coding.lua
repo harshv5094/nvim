@@ -35,7 +35,13 @@ return {
 		event = "InsertEnter",
 		version = "2.*",
 		dependencies = {
-			"rafamadriz/friendly-snippets",
+			{
+				"L3MON4D3/LuaSnip",
+				-- follow latest release.
+				version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+				-- install jsregexp (optional!).
+				build = "make install_jsregexp",
+			},
 		},
 		opts = {
 			keymap = {
@@ -55,9 +61,7 @@ return {
 				},
 				documentation = { auto_show = true },
 			},
-			snippets = {
-				friendly_snippets = true,
-			},
+			snippets = { preset = "luasnip" },
 			-- Disable command line completion:
 			cmdline = { enabled = false },
 			sources = {
