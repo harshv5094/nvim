@@ -26,3 +26,15 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 		vim.lsp.enable(server_configs)
 	end,
 })
+
+local ns = vim.api.nvim_create_namespace("toggle_hlsearch")
+vim.on_key(function(char)
+	if vim.fn.mode() == "n" then
+		local key = vim.fn.keytrans(char)
+		if vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, key) then
+			vim.opt.hlsearch = true
+		elseif key == "<Esc>" then
+			vim.opt.hlsearch = false
+		end
+	end
+end, ns)
