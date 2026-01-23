@@ -14,6 +14,17 @@ return {
 	},
 	keys = {
 		{
+			"<leader>fc",
+			function()
+				require("telescope.builtin").find_files({
+					prompt_title = "< Neovim Config >",
+					cwd = vim.fn.stdpath("config"),
+					hidden = true,
+				})
+			end,
+			desc = "Telescope -> Find config files",
+		},
+		{
 			"<leader>fP",
 			function()
 				require("telescope.builtin").find_files({
@@ -91,7 +102,7 @@ return {
 				telescope.extensions.file_browser.file_browser({
 					path = "%:p:h",
 					cwd = telescope_buffer_dir(),
-					respect_gitignore = false,
+					respect_gitignore = true,
 					hidden = true,
 					follow_symlinks = true,
 					grouped = true,
@@ -132,6 +143,11 @@ return {
 		local fb_actions = require("telescope").extensions.file_browser.actions
 
 		opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
+			file_ignore_patterns = {
+				"%.git/",
+				"node_modules",
+				"%.git$",
+			},
 			wrap_results = true,
 			layout_strategy = "horizontal",
 			layout_config = {
