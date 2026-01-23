@@ -38,3 +38,19 @@ vim.on_key(function(char)
 		end
 	end
 end, ns)
+
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(args)
+		local bufnr = args.buf
+		local ft = vim.bo[bufnr].filetype
+
+		-- Check if we have a parser for this filetype
+		local lang = vim.treesitter.language.get_lang(ft) or ft
+		if lang and #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) > 0 then
+			-- Start Highlighting
+			vim.treesitter.start(bufnr, lang)
+			-- Enable Indentation
+			vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end
+	end,
+})
