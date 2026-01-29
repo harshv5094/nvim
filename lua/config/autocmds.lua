@@ -27,6 +27,7 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 	end,
 })
 
+-- Turn auto hlsearch on and off
 local ns = vim.api.nvim_create_namespace("toggle_hlsearch")
 vim.on_key(function(char)
 	if vim.fn.mode() == "n" then
