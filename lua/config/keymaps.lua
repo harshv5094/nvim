@@ -5,10 +5,13 @@ local opts = { noremap = true, silent = true }
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
 
+-- Command Mode shortcut
+map("n", ";", ":", { desc = "CMD enter command mode" })
+
 -- New tab
--- map("n", "te", ":tabedit<CR>")
--- map("n", "<tab>", ":tabnext<CR>", opts)
--- map("n", "<s-tab>", ":tabprev<CR>", opts)
+map("n", "te", ":tabedit<CR>")
+map("n", "<tab>", ":tabnext<CR>", opts)
+map("n", "<s-tab>", ":tabprev<CR>", opts)
 
 -- Split window
 map("n", "ss", ":split<CR>", opts)
