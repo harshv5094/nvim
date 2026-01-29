@@ -3,6 +3,7 @@ local opts = { noremap = true, silent = true }
 
 -- Custom Utility function
 local git = require("utils.git")
+local hex2rgba = require("utils.hex2rgba")
 
 -- New tab
 -- map("n", "te", ":tabedit<CR>")
@@ -35,10 +36,17 @@ map("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Netrw Explore", silent = tru
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace" })
 
 -- Adding executable permission to script
-map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = " Set Script To Executable", silent = true })
+map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>", silent = true })
+
+map("n", "<localleader>X", "<cmd>!chmod -x %<CR>", { desc = "chmod -x <current-buffer>", silent = true })
 
 -- Lazy Keymap
 map("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Lazy", silent = true })
 
 -- Quit Nvim
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+-- Custom utility to convert hex to rgba
+map("n", "<localleader>cs", function()
+	hex2rgba.Set()
+end, { desc = "Convert Hex to RGBA", silent = true, noremap = true })
