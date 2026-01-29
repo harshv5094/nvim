@@ -23,7 +23,7 @@ return {
 			{
 				"<leader>ff",
 				"<CMD>Pick files<CR>",
-				"mini.pick -> Files",
+				desc = "mini.pick -> Files",
 			},
 		},
 	},
