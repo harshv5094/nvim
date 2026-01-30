@@ -48,4 +48,29 @@ return {
 			})
 		end,
 	},
+
+	-- NOTE: Undo tree
+	{
+		"mbbill/undotree",
+		event = { "BufReadPre" },
+		config = function()
+			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, {
+				desc = "Toggle Undotree",
+			})
+		end,
+	},
+
+	-- NOTE: Toggle Terminal
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = true,
+		keys = {
+			{
+				"<leader>ft",
+				"<CMD>ToggleTerm<CR>",
+				desc = "Toggle Terminal",
+			},
+		},
+	},
 }

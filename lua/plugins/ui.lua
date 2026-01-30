@@ -107,4 +107,12 @@ return {
 			require("lualine").setup(opts)
 		end,
 	},
+
+	-- NOTE: Key Highlighter
+	{
+		"folke/which-key.nvim",
+		opts = {
+			preset = "modern",
+		},
+	},
 }
