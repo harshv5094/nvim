@@ -93,7 +93,7 @@ return {
 					{ "encoding" },
 				},
 				lualine_y = {
-					{ "location" },
+					{ "progress" },
 					{ "filetype" },
 				},
 				lualine_z = {
