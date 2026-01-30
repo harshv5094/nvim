@@ -19,7 +19,7 @@ return {
 					hidden = true,
 				})
 			end,
-			desc = "Telescope -> Find config files",
+			desc = "Find config files",
 		},
 		{
 			"<leader>fP",
@@ -28,18 +28,18 @@ return {
 					cwd = require("lazy.core.config").options.root,
 				})
 			end,
-			desc = "Telescope -> Find files from Lazy config root",
+			desc = "Lazy Config (Root)",
 		},
 		{
-			";c",
+			"<leader>ci",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.lsp_incoming_calls()
 			end,
-			desc = "Telescope -> LSP incoming calls",
+			desc = "LSP incoming calls",
 		},
 		{
-			";;",
+			"<leader>sr",
 			function()
 				require("telescope.builtin").resume()
 			end,
@@ -55,14 +55,14 @@ return {
 					hidden = true,
 				})
 			end,
-			desc = "Telescope -> Find Files",
+			desc = "Find Files",
 		},
 		{
 			"<leader>:",
 			function()
 				require("telescope.builtin").command_history()
 			end,
-			desc = "Telescope -> Command History",
+			desc = "Command History",
 		},
 		{
 			"<leader>,",
@@ -70,7 +70,7 @@ return {
 				local builtin = require("telescope.builtin")
 				builtin.buffers()
 			end,
-			desc = "Telescope -> Buffers",
+			desc = "Buffers",
 		},
 		{
 			"<leader>/",
@@ -78,7 +78,7 @@ return {
 				local builtin = require("telescope.builtin")
 				builtin.live_grep()
 			end,
-			desc = "Telescope -> Live Grep",
+			desc = "Live Grep",
 		},
 		{
 			"<leader>sh",
@@ -86,7 +86,7 @@ return {
 				local builtin = require("telescope.builtin")
 				builtin.help_tags()
 			end,
-			desc = "Telescope -> Help Tags",
+			desc = "Help Tags",
 		},
 		{
 			"sf",
@@ -110,28 +110,28 @@ return {
 					},
 				})
 			end,
-			desc = "Telescope -> Browse File",
+			desc = "Browse Files",
 		},
 		{
 			"<leader>sk",
 			function()
 				require("telescope.builtin").keymaps()
 			end,
-			desc = "Telescope -> Keymaps",
+			desc = "Keymaps",
 		},
 		{
 			"<leader>sm",
 			function()
 				require("telescope.builtin").man_pages()
 			end,
-			desc = "Telescope -> Man Pages",
+			desc = "Man Pages",
 		},
 		{
 			"<leader>cd",
 			function()
 				require("telescope.builtin").diagnostics()
 			end,
-			desc = "Telescope -> Man Pages",
+			desc = "Diagnostics",
 		},
 	},
 	config = function(_, opts)

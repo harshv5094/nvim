@@ -1,5 +1,4 @@
 return {
-
 	-- NOTE: Comments highlighter
 	{
 		"folke/todo-comments.nvim",
@@ -33,7 +32,7 @@ return {
 
 	{
 		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		opts = {},
 		cmd = "Trouble",
 		keys = {
 			{
@@ -106,13 +105,5 @@ return {
 		config = function(_, opts)
 			require("lualine").setup(opts)
 		end,
-	},
-
-	-- NOTE: Key Highlighter
-	{
-		"folke/which-key.nvim",
-		opts = {
-			preset = "modern",
-		},
 	},
 }

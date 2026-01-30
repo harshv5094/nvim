@@ -1,6 +1,10 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+-- Enable cowboy mode
+local discipline = require("utils.discipline")
+discipline.cowboy()
+
 -- Custom Utility function
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
