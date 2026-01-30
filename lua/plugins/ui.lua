@@ -78,7 +78,29 @@ return {
 				section_separators = { left = "", right = "" },
 			},
 			sections = {
-				lualine_a = { { "mode", icon = "" } },
+				lualine_a = {
+					{ "mode", icon = "" },
+				},
+				lualine_b = {
+					{ "filename", file_status = true, path = 0 },
+					{ "branch", icon = "" },
+				},
+				lualine_c = {
+					{ "diagnostics" },
+				},
+				lualine_x = {
+					{ "diff" },
+					{ "encoding" },
+				},
+				lualine_y = {
+					{ "location" },
+					{ "filetype" },
+				},
+				lualine_z = {
+					function()
+						return " " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+					end,
+				},
 			},
 		},
 		config = function(_, opts)
