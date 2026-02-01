@@ -1,3 +1,3 @@
 # Nvim
 
-this is my neovim config (Diet Coke Version) for quick editing experience.
+This is my custom neovim early resembled to my current lazyvim

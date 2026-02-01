@@ -20,6 +20,7 @@ return {
 			{ "<leader>w", group = "windows" },
 			{ "<leader>c", group = "code" },
 			{ "<leader>l", group = "lazy" },
+			{ "<leader>a", group = "ai", icon = "🤖" },
 		})
 	end,
 }
