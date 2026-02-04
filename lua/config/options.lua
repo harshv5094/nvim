@@ -1,4 +1,8 @@
-local g = vim.g
+-- Enable System Clipboard
+vim.schedule(function()
+	vim.o.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+end)
+
 local opt = vim.opt
 
 opt.encoding = "utf-8"
@@ -15,7 +19,6 @@ opt.showcmd = true
 opt.cmdheight = 1
 opt.laststatus = 3
 opt.cursorline = true
-opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
 opt.expandtab = true
 opt.scrolloff = 10
