@@ -1,5 +1,6 @@
 return {
 	"nickvandyke/opencode.nvim",
+	event = "VeryLazy",
 	config = function()
 		vim.keymap.set({ "n", "x" }, "<leader>aa", function()
 			require("opencode").ask("@this: ", { submit = true })
