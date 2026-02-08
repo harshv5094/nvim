@@ -9,9 +9,6 @@ discipline.cowboy()
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
 
--- Command Mode shortcut
-map("n", ";", ":", { desc = "CMD enter command mode" })
-
 -- New tab
 map("n", "te", ":tabedit<CR>")
 map("n", "<tab>", ":tabnext<CR>", opts)
