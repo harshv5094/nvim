@@ -1,8 +1,3 @@
--- Enable System Clipboard
-vim.schedule(function()
-	vim.o.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
-end)
-
 local opt = vim.opt
 
 opt.encoding = "utf-8"
@@ -22,6 +17,7 @@ opt.cursorline = true
 opt.completeopt = "menu,menuone,noselect"
 opt.expandtab = true
 opt.scrolloff = 10
+opt.clipboard = "unnamedplus"
 opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 opt.inccommand = "split"
 opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
