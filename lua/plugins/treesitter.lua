@@ -16,7 +16,6 @@ return {
 				"json",
 				"zsh",
 				"bash",
-				"fish",
 			}
 
 			ts.install(parsers)
