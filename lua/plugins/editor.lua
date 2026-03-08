@@ -1,5 +1,5 @@
 return {
-	-- Telescope.nvim (finder, picker etc)
+	-- NOTE: Telescope.nvim (finder, picker etc)
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
@@ -116,7 +116,7 @@ return {
 		end,
 	},
 
-	-- Multiple close buffer plugin
+	-- NOTE: Buffer closing plugin
 	{
 		"kazhala/close-buffers.nvim",
 		event = "VeryLazy",
@@ -143,5 +143,14 @@ return {
 				desc = "Close Nameless Buffers",
 			},
 		},
+	},
+
+	-- NOTE: Pairing plugin for [], {} and ()
+	{
+		"nvim-mini/mini.pairs",
+		version = false,
+		config = function()
+			require('mini.pairs').setup()
+		end
 	},
 }
