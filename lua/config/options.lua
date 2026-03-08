@@ -1,5 +1,9 @@
+local discipline=require("utils.discipline")
 local g = vim.g
 local opt = vim.o
+
+-- A discipline blocker for better horizontal / vertical navigation
+discipline.cowboy()
 
 -- Setting leader and localleader keys
 g.mapleader = " "
