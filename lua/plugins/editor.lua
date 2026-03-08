@@ -21,6 +21,8 @@ return {
 			keymap.set("n", "<leader>,", builtin.buffers, { desc = "Telescope buffers" })
 			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
 			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Telescope man pages" })
+			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope keymaps" })
+
 
 			-- Neovim Config file keymap
 			keymap.set("n", "<leader>fc", function()
