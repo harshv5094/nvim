@@ -1,4 +1,5 @@
 local keymap = vim.keymap
+local git = require("utils.git")
 
 -- Netrw Explorer keymap
 keymap.set("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Explore" })
@@ -21,3 +22,6 @@ keymap.set("n", "<C-h>", "<C-w><")
 keymap.set("n", "<C-j>", "<C-w>+")
 keymap.set("n", "<C-k>", "<C-w>-")
 keymap.set("n", "<C-l>", "<C-w>>")
+
+-- My custom git initialization function
+keymap.set("n", "<leader>gi", git.init, { desc = "Git init" } )
