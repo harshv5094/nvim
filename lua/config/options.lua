@@ -28,3 +28,4 @@ opt.backup = false  -- Disable neovim backup functionality
 opt.writebackup = false -- Disable neovim backup functionality
 opt.scrolloff = 3 -- Set line scrolling to 3 lines
 opt.pumheight = 5 -- Popup Items height
+opt.laststatus = 3 -- Global statusline 
