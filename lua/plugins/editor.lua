@@ -16,17 +16,15 @@ return {
 			local fb_actions = telescope.extensions.file_browser.actions
 
 			-- Builtin keymaps
-			keymap.set("n", "<leader><space>", builtin.find_files, { desc = "Telescope find files" })
-			keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Telescope live grep" })
-			keymap.set("n", "<leader>,", builtin.buffers, { desc = "Telescope buffers" })
-			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
-			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Telescope man pages" })
-			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope keymaps" })
+			keymap.set("n", "<leader><space>", builtin.find_files, { desc = "Find Files" })
+			keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Live Grep" })
+			keymap.set("n", "<leader>,", builtin.buffers, { desc = "Buffers" })
+			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Help Tags" })
+			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Man Pages" })
+			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Keymaps" })
 			keymap.set("n", "<leader>uC", function ()
-				require("telescope.builtin").colorscheme({
-					enable_preview = true
-				})
-			end, { desc = "Telescope Colorscheme" })
+				require("telescope.builtin").colorscheme({ enable_preview = true })
+			end, { desc = "Colorscheme" })
 
 			-- Neovim Config file keymap
 			keymap.set("n", "<leader>fc", function()
@@ -56,7 +54,7 @@ return {
 					-- 	height = 0.60,
 					-- },
 				})
-			end, { desc = "Telescope file browser" })
+			end, { desc = "File Browser" })
 
 			telescope.setup({
 				defaults = {
@@ -163,5 +161,30 @@ return {
 		config = function()
 			require('mini.pairs').setup()
 		end
+	},
+
+
+	-- NOTE: Better increase/descrease
+	{
+		"monaqa/dial.nvim",
+		event = "BufReadPre",
+    -- stylua: ignore
+    keys = {
+      { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
+      { "<C-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
+    },
+		config = function()
+			local augend = require("dial.augend")
+			require("dial.config").augends:register_group({
+				default = {
+					augend.integer.alias.decimal,
+					augend.integer.alias.hex,
+					augend.date.alias["%Y/%m/%d"],
+					augend.constant.alias.bool,
+					augend.semver.alias.semver,
+					augend.constant.new({ elements = { "let", "const" } }),
+				},
+			})
+		end,
 	},
 }
