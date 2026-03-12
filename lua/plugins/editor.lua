@@ -17,12 +17,16 @@ return {
 
 			-- Builtin keymaps
 			keymap.set("n", "<leader><space>", builtin.find_files, { desc = "Telescope find files" })
-			keymap.set("n", "<leader>.", builtin.live_grep, { desc = "Telescope live grep" })
+			keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Telescope live grep" })
 			keymap.set("n", "<leader>,", builtin.buffers, { desc = "Telescope buffers" })
 			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
 			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Telescope man pages" })
 			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope keymaps" })
-
+			keymap.set("n", "<leader>uC", function ()
+				require("telescope.builtin").colorscheme({
+					enable_preview = true
+				})
+			end, { desc = "Telescope Colorscheme" })
 
 			-- Neovim Config file keymap
 			keymap.set("n", "<leader>fc", function()
@@ -80,6 +84,11 @@ return {
 					},
 				},
 				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						case_mode = "smart_case"
+					},
 					file_browser = {
 						-- theme = "ivy",
 						-- disables netrw and use telescope-file-browser in its place
