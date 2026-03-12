@@ -5,7 +5,7 @@ return {
 		event = "BufReadPre",
 		config = function()
 			vim.keymap.set("n", "<leader>gs", "<CMD>Git status<CR>", { desc = "Git Status" })
-			vim.keymap.set("n", "<leader>ga", ":Git add", { desc = "Git Add" })
+			vim.keymap.set("n", "<leader>ga", ":Git add ", { desc = "Git Add" })
 			vim.keymap.set("n", "<leader>gce", "<CMD>Git commit --edit<CR>", { desc = "Git Commit (edit)" })
 			vim.keymap.set("n", "<leader>gca", "<CMD>Git commit --amend<CR>", { desc = "Git Commit (amend)" })
 			vim.keymap.set("n", "<leader>gp", "<CMD>Git pull --no-edit<CR>", { desc = "Git Pull (No Edit)" })
