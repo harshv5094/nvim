@@ -73,9 +73,26 @@ return {
 				},
 				sections = {
 					lualine_a = { 'mode' },
-					lualine_b = { 'branch', 'diff', 'diagnostics' },
-					lualine_c = { 'filename' },
-					lualine_x = { 'filetype' },
+					lualine_b = { 
+						'branch', 
+						'diagnostics' 
+					},
+					lualine_c = { 
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+						{ "filename" }
+					},
+					lualine_x = { 
+						{
+        			require("lazy.status").updates,
+        			cond = require("lazy.status").has_updates,
+        			color = "Special",
+      			},
+						{
+							'diff', 
+							colored = true,
+							symbols = { added = " ", modified = " ", removed = " " },
+						}, 
+					},
 					lualine_y = { 'progress' },
 					lualine_z = { 	
 						function()
