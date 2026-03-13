@@ -26,10 +26,15 @@ map("n", "<C-k>", "<C-w>-", opts)
 map("n", "<C-l>", "<C-w>>", opts)
 
 -- My custom git initialization function
-map("n", "<leader>gi", git.init, { desc = "Git init", noremap = true } )
+map("n", "<leader>gi", git.init, { desc = "Git init", noremap = true })
 
 -- String auto replace
-map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace", noremap = true })
+map(
+	"n",
+	"<localleader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "String auto replace", noremap = true }
+)
 
 -- Adding executable permission to script
 map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>", silent = true })

@@ -4,13 +4,13 @@ return {
 		"folke/todo-comments.nvim",
 		event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {}
+		opts = {},
 	},
 
 	-- NOTE: Floating file name/statusline
 	{
 		"b0o/incline.nvim",
-		event = "VeryLazy",	
+		event = "VeryLazy",
 		config = function()
 			local incline = require("incline")
 			incline.setup({
@@ -55,7 +55,7 @@ return {
 					return design
 				end,
 			})
-		end
+		end,
 	},
 
 	-- NOTE: Statusline
@@ -72,43 +72,43 @@ return {
 					globalstatus = true, -- A single statusline for every window
 				},
 				sections = {
-					lualine_a = { 'mode' },
-					lualine_b = { 
-						'branch', 
-						'diagnostics' 
+					lualine_a = { "mode" },
+					lualine_b = {
+						"branch",
+						"diagnostics",
 					},
-					lualine_c = { 
-            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-						{ "filename" }
+					lualine_c = {
+						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+						{ "filename" },
 					},
-					lualine_x = { 
+					lualine_x = {
 						{
-        			require("lazy.status").updates,
-        			cond = require("lazy.status").has_updates,
-        			color = "Special",
-      			},
+							require("lazy.status").updates,
+							cond = require("lazy.status").has_updates,
+							color = "Special",
+						},
 						{
-							'diff', 
+							"diff",
 							colored = true,
 							symbols = { added = " ", modified = " ", removed = " " },
-						}, 
+						},
 					},
-					lualine_y = { 'progress' },
-					lualine_z = { 	
+					lualine_y = { "progress" },
+					lualine_z = {
 						function()
 							return " " .. os.date("%I:%M %p")
 						end,
 					},
 				},
-  			inactive_sections = {
-    			lualine_a = {},
-    			lualine_b = {},
-    			lualine_c = {'filename'},
-    			lualine_x = {'location'},
-    			lualine_y = {},
-    			lualine_z = {}
-  			},
+				inactive_sections = {
+					lualine_a = {},
+					lualine_b = {},
+					lualine_c = { "filename" },
+					lualine_x = { "location" },
+					lualine_y = {},
+					lualine_z = {},
+				},
 			})
-		end
-	}
+		end,
+	},
 }
