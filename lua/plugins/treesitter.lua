@@ -7,6 +7,9 @@ return {
 		config = function()
 			local parsers = {
 				"bash",
+				"gitcommit",
+				"gitignore",
+				"git_config",
 				"vim",
 				"diff",
 				"vimdoc",
