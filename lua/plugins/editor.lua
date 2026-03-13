@@ -22,7 +22,8 @@ return {
 			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Help Tags" })
 			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Man Pages" })
 			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Keymaps" })
-			keymap.set("n", "<leader>uC", function ()
+			keymap.set("n", "<leader>:", builtin.command_history, { desc = "Keymaps" })
+			keymap.set("n", "<leader>uC", function()
 				require("telescope.builtin").colorscheme({ enable_preview = true })
 			end, { desc = "Colorscheme" })
 
@@ -85,7 +86,7 @@ return {
 					fzf = {
 						fuzzy = true,
 						override_generic_sorter = true,
-						case_mode = "smart_case"
+						case_mode = "smart_case",
 					},
 					file_browser = {
 						-- theme = "ivy",
@@ -159,10 +160,9 @@ return {
 		"nvim-mini/mini.pairs",
 		version = false,
 		config = function()
-			require('mini.pairs').setup()
-		end
+			require("mini.pairs").setup()
+		end,
 	},
-
 
 	-- NOTE: Better increase/descrease
 	{
