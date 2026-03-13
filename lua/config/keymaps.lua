@@ -1,27 +1,46 @@
-local keymap = vim.keymap
+local map = vim.keymap.set
 local git = require("utils.git")
+local hex2rgba = require("utils.hex2rgba")
+local opts = { noremap = true, silent = true }
 
 -- Netrw Explorer keymap
-keymap.set("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Explore" })
+map("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Explore", noremap = true })
 
 -- Split screen keymaps
-keymap.set("n", "ss", "<CMD>split<CR>")
-keymap.set("n", "sv", "<CMD>vsplit<CR>")
+map("n", "ss", "<CMD>split<CR>")
+map("n", "sv", "<CMD>vsplit<CR>")
 
 -- Lazy.nvim keymap
-keymap.set("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Lazy" })
+map("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Lazy", noremap = true })
 
 -- Split screen focus navigation
-keymap.set("n", "sh", "<C-W>h")
-keymap.set("n", "sj", "<C-W>j")
-keymap.set("n", "sk", "<C-W>k")
-keymap.set("n", "sl", "<C-W>l")
+map("n", "sh", "<C-W>h", opts)
+map("n", "sj", "<C-W>j", opts)
+map("n", "sk", "<C-W>k", opts)
+map("n", "sl", "<C-W>l", opts)
 
 -- Split screen resize
-keymap.set("n", "<C-h>", "<C-w><")
-keymap.set("n", "<C-j>", "<C-w>+")
-keymap.set("n", "<C-k>", "<C-w>-")
-keymap.set("n", "<C-l>", "<C-w>>")
+map("n", "<C-h>", "<C-w><", opts)
+map("n", "<C-j>", "<C-w>+", opts)
+map("n", "<C-k>", "<C-w>-", opts)
+map("n", "<C-l>", "<C-w>>", opts)
 
 -- My custom git initialization function
-keymap.set("n", "<leader>gi", git.init, { desc = "Git init" } )
+map("n", "<leader>gi", git.init, { desc = "Git init", noremap = true } )
+
+-- String auto replace
+map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace", noremap = true })
+
+-- Adding executable permission to script
+map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>", silent = true })
+map("n", "<localleader>X", "<cmd>!chmod -x %<CR>", { desc = "chmod -x <current-buffer>", silent = true })
+
+-- Custom utility to convert hex to rgba
+map("n", "<localleader>cs", function()
+	hex2rgba.Set()
+end, { desc = "Convert Hex to RGBA", silent = true, noremap = true })
+
+-- Rename whole variables in the buffer
+map("n", "rn", function()
+	vim.lsp.buf.rename()
+end, { desc = "rename buffer", silent = true })
