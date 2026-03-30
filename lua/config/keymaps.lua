@@ -1,6 +1,8 @@
 local map = vim.keymap.set
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
+local base = require("utils.base")
+
 local opts = { noremap = true, silent = true }
 
 -- Netrw Explorer keymap
@@ -53,3 +55,5 @@ end, { desc = "Convert Hex to RGBA", silent = true, noremap = true })
 map("n", "rn", function()
 	vim.lsp.buf.rename()
 end, { desc = "rename buffer", silent = true })
+
+map({ "n", "t" }, "<C-/>", base.toggle_terminal, { desc = "Toggle Terminal" })
