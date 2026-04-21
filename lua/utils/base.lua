@@ -30,7 +30,7 @@ function M.toggle_terminal()
 
 	-- Start terminal if it's a new buffer
 	if vim.bo[state.buf].buftype ~= "terminal" then
-		vim.fn.termopen(vim.o.shell)
+		vim.fn.jobstart(vim.o.shell, { term = true })
 		vim.wo[state.win].number = false
 		vim.wo[state.win].relativenumber = false
 		vim.wo[state.win].signcolumn = "no"
