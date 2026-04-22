@@ -1,10 +1,9 @@
 -- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
 	end,
-	group = highlight_group,
+	group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
 	pattern = "*",
 })
 
@@ -22,5 +21,13 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 			end)
 			:totable()
 		vim.lsp.enable(servers)
+	end,
+})
+
+-- Auto clear prompt message after moving the cursor
+vim.api.nvim_create_autocmd("CursorMoved", {
+	group = vim.api.nvim_create_augroup("ClearPrompt", { clear = true }),
+	callback = function()
+		vim.cmd("echo ''")
 	end,
 })
