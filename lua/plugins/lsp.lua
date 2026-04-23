@@ -11,11 +11,13 @@ return {
 		},
 	},
 
+	--NOTE: When shifting to v2 blink.lib is necessary uncomment it later after stable release
 	{
 		"saghen/blink.cmp",
 		version = "1.*",
 		dependencies = {
 			{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+			-- "saghen/blink.lib",
 			"moyiz/blink-emoji.nvim",
 			"saghen/blink.compat",
 		},
