@@ -1,11 +1,9 @@
 return {
 	{
 		"folke/lazydev.nvim",
-		ft = "lua", -- only load on lua files
+		ft = "lua",
 		opts = {
 			library = {
-				-- See the configuration section for more details
-				-- Load luvit types when the `vim.uv` word is found
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		},
@@ -16,17 +14,22 @@ return {
 		"saghen/blink.cmp",
 		version = "1.*",
 		dependencies = {
-			{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+			"rafamadriz/friendly-snippets",
 			-- "saghen/blink.lib",
 			"moyiz/blink-emoji.nvim",
 			"saghen/blink.compat",
 		},
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
 		opts = {
 			keymap = {
 				preset = "default",
 				["<S-Tab>"] = { "select_prev", "fallback" },
 				["<Tab>"] = { "select_next", "fallback" },
 				["<CR>"] = { "accept_and_enter", "fallback" },
+			},
+			appearance = {
+				nerd_font_variant = "mono",
 			},
 			sources = {
 				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },
