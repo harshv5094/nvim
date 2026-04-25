@@ -100,4 +100,10 @@ return {
 			})
 		end,
 	},
+
+	--NOTE:  Schema loading system
+	{
+		"b0o/SchemaStore.nvim",
+		event = "VeryLazy",
+	},
 }
