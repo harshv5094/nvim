@@ -1,4 +1,15 @@
 return {
+	-- NOTE: A plugin for undo files checking
+	{
+		"mbbill/undotree",
+		keys = {
+			{
+				"<leader>u",
+				"<CMD>UndotreeToggle<CR>",
+				{ desc = "Undotree Toggle" },
+			},
+		},
+	},
 	-- NOTE: Telescope.nvim (finder, picker etc)
 	{
 		"nvim-telescope/telescope.nvim",
