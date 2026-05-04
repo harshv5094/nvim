@@ -4,6 +4,7 @@ return {
 		priority = 1000,
 		opts = {
 			terminal_colors = true,
+			transparent_mode = true,
 			undercurl = true,
 			bold = true,
 			italic = {
