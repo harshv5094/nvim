@@ -6,6 +6,7 @@ return {
 		lazy = false,
 		---@type snacks.Config
 		opts = {
+			explore = { enabled = true },
 			statuscolumn = { enabled = true },
 			indent = { enabled = true },
 			lazygit = { enabled = true },
@@ -39,6 +40,13 @@ return {
 					Snacks.lazygit()
 				end,
 				desc = "Lazygit",
+			},
+			{
+				"<leader>f",
+				function()
+					Snacks.explorer()
+				end,
+				desc = "File Explorer",
 			},
 		},
 	},
