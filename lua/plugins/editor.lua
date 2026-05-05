@@ -175,6 +175,13 @@ return {
 		end,
 	},
 
+	{
+		"nvim-mini/mini.icons",
+		config = function()
+			require("mini.icons").setup()
+		end,
+	},
+
 	-- NOTE: Better increase/descrease
 	{
 		"monaqa/dial.nvim",
