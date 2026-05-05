@@ -175,6 +175,7 @@ return {
 		end,
 	},
 
+	-- NOTE: Mini Icons library
 	{
 		"nvim-mini/mini.icons",
 		config = function()
