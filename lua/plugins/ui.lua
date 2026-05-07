@@ -7,6 +7,69 @@ return {
 		opts = {},
 	},
 
+	-- NOTE: folke's which key implemetation for neovim
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			preset = "helix",
+		},
+		config = function(_, opts)
+			require("which-key").setup(opts)
+			require("which-key").add({
+				{
+					"<leader>c",
+					group = "code",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>g",
+					group = "git",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>s",
+					group = "search",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>u",
+					group = "ui",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>f",
+					group = "file/find",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>x",
+					group = "diagnostics",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>b",
+					group = "buffers",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+			})
+		end,
+	},
+
 	-- NOTE: Floating file name/statusline
 	{
 		"b0o/incline.nvim",
