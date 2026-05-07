@@ -42,7 +42,7 @@ return {
 				desc = "Lazygit",
 			},
 			{
-				"<leader>f",
+				"<leader>ff",
 				function()
 					Snacks.explorer()
 				end,

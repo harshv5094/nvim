@@ -12,6 +12,7 @@ return {
 	--NOTE: When shifting to v2 blink.lib is necessary uncomment it later after stable release
 	{
 		"saghen/blink.cmp",
+		event = { "InsertEnter" },
 		version = "1.*",
 		dependencies = {
 			"rafamadriz/friendly-snippets",

@@ -36,6 +36,7 @@ return {
 	-- NOTE: Utility plugin to autoinstall treesitter parsers
 	{
 		"mks-h/treesitter-autoinstall.nvim",
+		event = "BufReadPre",
 		opts = {
 			-- A list of *treesitter languages* to ignore.
 			ignore = {},

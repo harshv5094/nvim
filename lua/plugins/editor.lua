@@ -2,6 +2,7 @@ return {
 	-- NOTE: A plugin for undo files checking
 	{
 		"mbbill/undotree",
+		event = "BufReadPre",
 		keys = {
 			{
 				"<leader>u",
@@ -140,7 +141,7 @@ return {
 	-- NOTE: Buffer closing plugin
 	{
 		"kazhala/close-buffers.nvim",
-		event = "VeryLazy",
+		event = "BufReadPre",
 		keys = {
 			{
 				"<leader>bh",
@@ -169,6 +170,7 @@ return {
 	-- NOTE: Pairing plugin for [], {} and ()
 	{
 		"nvim-mini/mini.pairs",
+		event = "BufReadPre",
 		version = false,
 		config = function()
 			require("mini.pairs").setup()
@@ -178,6 +180,7 @@ return {
 	-- NOTE: Mini Icons library
 	{
 		"nvim-mini/mini.icons",
+		version = false,
 		config = function()
 			require("mini.icons").setup()
 		end,

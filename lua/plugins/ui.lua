@@ -61,6 +61,7 @@ return {
 	-- NOTE: Statusline
 	{
 		"nvim-lualine/lualine.nvim",
+		lazy = false,
 		config = function()
 			local lualine = require("lualine")
 			lualine.setup({

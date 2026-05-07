@@ -75,7 +75,7 @@ return {
 	-- Keeping .env Secret
 	{
 		"laytan/cloak.nvim",
-		event = "VeryLazy",
+		event = "BufReadPre",
 		config = function()
 			require("cloak").setup({
 				enabled = true,
@@ -104,6 +104,6 @@ return {
 	--NOTE:  Schema loading system
 	{
 		"b0o/SchemaStore.nvim",
-		event = "VeryLazy",
+		ft = { "json" },
 	},
 }
