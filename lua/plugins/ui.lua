@@ -174,4 +174,23 @@ return {
 			})
 		end,
 	},
+
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = { "md", "markdown" },
+		opts = {
+			code = {
+				sign = false,
+				width = "block",
+				right_pad = 1,
+			},
+			heading = {
+				sign = false,
+				icons = {},
+			},
+			checkbox = {
+				enabled = false,
+			},
+		},
+	},
 }
