@@ -12,7 +12,7 @@ return {
 			{
 				"<leader>ga",
 				":Git add ",
-				desc = "Git status",
+				desc = "Git add",
 			},
 			{
 				"<leader>gce",
