@@ -6,8 +6,8 @@ return {
 		keys = {
 			{
 				"<leader>gs",
-				"<CMD>Git status<CR>",
-				desc = "Git status",
+				"<CMD>Git status --short<CR>",
+				desc = "Git status (short)",
 			},
 			{
 				"<leader>ga",
