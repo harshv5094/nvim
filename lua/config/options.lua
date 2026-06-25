@@ -1,6 +1,6 @@
 local discipline = require("utils.discipline")
 local g = vim.g
-local opt = vim.o
+local opt = vim.opt
 
 -- A discipline blocker for better horizontal / vertical navigation
 discipline.cowboy()
@@ -25,6 +25,7 @@ opt.splitbelow = true -- Split window on below
 opt.swapfile = true -- Use swap file to save unsave backup
 opt.undofile = true -- Enable persistant undo
 opt.backup = false -- Disable neovim backup functionality
+opt.title = true -- Enable title option
 opt.writebackup = false -- Disable neovim backup functionality
 opt.scrolloff = 3 -- Set line scrolling to 3 lines
 opt.pumheight = 5 -- Popup Items height
