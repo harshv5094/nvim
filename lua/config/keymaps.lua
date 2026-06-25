@@ -60,4 +60,4 @@ map("n", "rn", function()
 	vim.lsp.buf.rename()
 end, { desc = "rename buffer", silent = true })
 
-map({ "n", "t" }, "<C-/>", base.toggle_terminal, { desc = "Toggle Terminal" })
+map({ "n", "t" }, "<leader>t", base.toggle_terminal, { desc = "Toggle Terminal" })
