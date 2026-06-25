@@ -8,6 +8,12 @@ local opts = { noremap = true, silent = true }
 -- Netrw Explorer keymap
 map("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Explore", noremap = true })
 
+-- Select All
+map("n", "<C-a>", "gg<S-V>G")
+
+-- Delete a word backwards
+map("n", "dw", 'vb"_d')
+
 -- Split screen keymaps
 map("n", "ss", "<CMD>split<CR>", opts)
 map("n", "sv", "<CMD>vsplit<CR>", opts)
