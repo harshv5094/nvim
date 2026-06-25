@@ -9,10 +9,6 @@ discipline.cowboy()
 g.mapleader = " "
 g.maplocalleader = "\\"
 
-if vim.fn.has("win32") == 1 then
-	opt.shell = "pwsh"
-end
-
 -- Setting up basic options
 opt.cursorline = true --Highlighted cursorline
 opt.tabstop = 2 -- 2 space for tabs
