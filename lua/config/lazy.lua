@@ -2,22 +2,6 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 
--- File load based on os
-local has = function(x)
-	return vim.fn.has == x
-end
-
-local is_mac = has("macunix")
-local is_win = has("win32")
-
-if is_mac then
-	require("config.macos")
-end
-
-if is_win then
-	require("windows.lua")
-end
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
