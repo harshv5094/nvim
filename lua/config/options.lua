@@ -32,6 +32,7 @@ end
 
 opt.title = true
 opt.relativenumber = true
+opt.termguicolors = true
 opt.autoindent = true
 opt.smartindent = true
 opt.autoread = true

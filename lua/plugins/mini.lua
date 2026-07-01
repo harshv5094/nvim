@@ -1,5 +1,5 @@
 return {
-	-- NOTE: A lightweight indentscope plugin
+	-- NOTE: Showing indent lines in the buffers
 	{
 		"nvim-mini/mini.indentscope",
 		event = "BufReadPre",
