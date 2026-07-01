@@ -5,6 +5,10 @@ local opt = vim.opt
 -- A discipline blocker for better horizontal / vertical navigation
 discipline.cowboy()
 
+-- Disable netrw plugin
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Setting leader and localleader keys
 g.mapleader = " "
 g.maplocalleader = "\\"
