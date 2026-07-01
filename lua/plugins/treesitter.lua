@@ -14,6 +14,7 @@ return {
 				"diff",
 				"vimdoc",
 				"lua",
+				"luadoc",
 			}
 			require("nvim-treesitter").install(parsers)
 		end,
