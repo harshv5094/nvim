@@ -175,6 +175,7 @@ return {
 		end,
 	},
 
+	-- NOTE: Setting up UI loading in markdown only
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		ft = { "md", "markdown" },
@@ -190,6 +191,24 @@ return {
 			},
 			checkbox = {
 				enabled = false,
+			},
+		},
+	},
+
+	-- NOTE: An LSP Overlay progress
+	{
+		"j-hui/fidget.nvim",
+		event = "LspAttach",
+		opts = {
+			progress = {
+				display = {
+					render_limit = 5,
+					done_ttl = 2,
+					done_icon = "✔",
+				},
+			},
+			notification = {
+				override_vim_notify = false, -- don't take over vim.notify, keep it LSP-progress only
 			},
 		},
 	},
