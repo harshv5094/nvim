@@ -64,3 +64,9 @@ map("n", "rn", function()
 end, { desc = "rename buffer", silent = true })
 
 map({ "n", "t" }, "<leader>t", base.toggle_terminal, { desc = "Toggle Terminal" })
+
+-- NOTE: commandline notes
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
+map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })
+map("n", "K", vim.lsp.buf.hover, { desc = "Hover (alt)" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
