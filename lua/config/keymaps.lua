@@ -5,10 +5,8 @@ local base = require("utils.base")
 
 local opts = { noremap = true, silent = true }
 
-if vim.fn.has("loaded_netrwPlugin") == 1 then
-	-- Netrw Explorer keymap
-	map("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Explore", noremap = true })
-end
+-- Netrw Explorer keymap
+-- map("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Explore", noremap = true })
 
 -- Delete a word backwards
 map("n", "dw", 'vb"_d')
