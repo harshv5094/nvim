@@ -5,7 +5,12 @@ return {
 		event = "BufReadPre",
 		keys = {
 			{
-				"<leader>gs",
+				"<leader>gss",
+				"<CMD>Git status<CR>",
+				desc = "Git status",
+			},
+			{
+				"<leader>gsq",
 				"<CMD>Git status --short<CR>",
 				desc = "Git status (short)",
 			},
