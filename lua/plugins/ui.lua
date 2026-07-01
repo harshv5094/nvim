@@ -32,6 +32,27 @@ return {
 					end,
 				},
 				{
+					"<leader>gh",
+					group = "hunks",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>gs",
+					group = "status",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>gc",
+					group = "commit",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
 					"<leader>s",
 					group = "search",
 					expand = function()
