@@ -5,17 +5,13 @@ local opt = vim.opt
 -- A discipline blocker for better horizontal / vertical navigation
 discipline.cowboy()
 
--- Disable netrw plugin
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Setting leader and localleader keys
 g.mapleader = " "
 g.maplocalleader = "\\"
 
-vim.scriptencoding = "utf-8"
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
+-- Disable netrw plugin
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 local has = function(x)
 	return vim.fn.has(x) == 1
@@ -24,11 +20,16 @@ end
 if has("win32") then
 	opt.shell = "pwsh"
 	opt.clipboard:prepend({ "unnamed", "unnamedplus" })
+	g.nofsync = true
 end
 
 if has("macunix") then
 	opt.clipboard:append({ "unnamedplus" })
 end
+
+vim.scriptencoding = "utf-8"
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 
 opt.title = true
 opt.relativenumber = true
