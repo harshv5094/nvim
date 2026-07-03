@@ -35,6 +35,8 @@ return {
 			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Telescope -> Man Pages" })
 			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope -> Keymaps" })
 			keymap.set("n", "<leader>:", builtin.command_history, { desc = "Telescope -> Command History" })
+			keymap.set("n", "<leader>xf", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
+
 			keymap.set("n", "<leader>uC", function()
 				require("telescope.builtin").colorscheme({ enable_preview = true })
 			end, { desc = "Colorscheme" })
