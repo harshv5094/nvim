@@ -46,10 +46,6 @@ map(
 	{ desc = "String auto replace", noremap = true }
 )
 
--- Adding executable permission to script
-map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>", silent = true })
-map("n", "<localleader>X", "<cmd>!chmod -x %<CR>", { desc = "chmod -x <current-buffer>", silent = true })
-
 -- Custom utility to convert hex to rgba
 map("n", "<localleader>cs", function()
 	hex2rgba.Set()
@@ -60,15 +56,17 @@ map("n", "rn", function()
 	vim.lsp.buf.rename()
 end, { desc = "rename buffer", silent = true })
 
--- chmod +x <current-buffer>
-map("n", "<leader>fx", function()
-	misc.chmod()
-end, { desc = "chmod +x <current-buffer>" })
+if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
+	-- chmod +x <current-buffer>
+	map("n", "<leader>fx", function()
+		misc.chmod()
+	end, { desc = "chmod +x <current-buffer>" })
 
--- chmod -x <current-buffer>
-map("n", "<leader>fX", function()
-	misc.chmod("-")
-end, { desc = "chmod -x <current-buffer>" })
+	-- chmod -x <current-buffer>
+	map("n", "<leader>fX", function()
+		misc.chmod("-")
+	end, { desc = "chmod -x <current-buffer>" })
+end
 
 -- LSP keymaps
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
