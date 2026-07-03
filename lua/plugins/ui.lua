@@ -214,6 +214,15 @@ return {
 				enabled = false,
 			},
 		},
+		keys = {
+			{
+				"<leader>um",
+				function()
+					require("render-markdown").toggle()
+				end,
+				desc = "Toggle Markdown",
+			},
+		},
 	},
 
 	-- NOTE: An LSP Overlay progress
