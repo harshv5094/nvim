@@ -28,13 +28,13 @@ return {
 			local fb_actions = telescope.extensions.file_browser.actions
 
 			-- Builtin keymaps
-			keymap.set("n", "<leader><space>", builtin.find_files, { desc = "Find Files" })
-			keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Live Grep" })
-			keymap.set("n", "<leader>,", builtin.buffers, { desc = "Buffers" })
-			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Help Tags" })
-			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Man Pages" })
-			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Keymaps" })
-			keymap.set("n", "<leader>:", builtin.command_history, { desc = "Keymaps" })
+			keymap.set("n", "<leader><space>", builtin.find_files, { desc = "Telescop -> Find Files" })
+			keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Telescope -> Live Grep" })
+			keymap.set("n", "<leader>,", builtin.buffers, { desc = "Telescope -> Buffers" })
+			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope -> Help Tags" })
+			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Telescope -> Man Pages" })
+			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope -> Keymaps" })
+			keymap.set("n", "<leader>:", builtin.command_history, { desc = "Telescope -> Command History" })
 			keymap.set("n", "<leader>uC", function()
 				require("telescope.builtin").colorscheme({ enable_preview = true })
 			end, { desc = "Colorscheme" })
