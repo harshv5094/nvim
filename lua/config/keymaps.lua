@@ -15,10 +15,6 @@ map("n", "dw", 'vb"_d')
 map("n", "ss", "<CMD>split<CR>", opts)
 map("n", "sv", "<CMD>vsplit<CR>", opts)
 
--- Split screen keymaps (leader key edition)
-map("n", "<leader>-", "<CMD>split<CR>", opts)
-map("n", "<leader>|", "<CMD>vsplit<CR>", opts)
-
 -- Lazy.nvim keymap
 map("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Lazy", noremap = true })
 
