@@ -2,6 +2,7 @@ local map = vim.keymap.set
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
 local base = require("utils.base")
+local misc = require("utils.misc")
 
 local opts = { noremap = true, silent = true }
 
@@ -59,10 +60,21 @@ map("n", "rn", function()
 	vim.lsp.buf.rename()
 end, { desc = "rename buffer", silent = true })
 
-map({ "n", "t" }, "<leader>t", base.toggle_terminal, { desc = "Toggle Terminal" })
+-- chmod +x <current-buffer>
+map("n", "<leader>fx", function()
+	misc.chmod()
+end, { desc = "chmod +x <current-buffer>" })
 
--- NOTE: commandline notes
+-- chmod -x <current-buffer>
+map("n", "<leader>fX", function()
+	misc.chmod("-")
+end, { desc = "chmod -x <current-buffer>" })
+
+-- LSP keymaps
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover (alt)" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
+
+-- Terminal toggle keymaps
+map({ "n", "t" }, "<leader>t", base.toggle_terminal, { desc = "Toggle Terminal" })
