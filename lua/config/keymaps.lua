@@ -2,7 +2,6 @@ local map = vim.keymap.set
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
 local base = require("utils.base")
-local misc = require("utils.misc")
 
 local opts = { noremap = true, silent = true }
 
@@ -59,12 +58,12 @@ end, { desc = "rename buffer", silent = true })
 if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	-- chmod +x <current-buffer>
 	map("n", "<leader>fx", function()
-		misc.chmod()
+		base.chmod()
 	end, { desc = "chmod +x <current-buffer>" })
 
 	-- chmod -x <current-buffer>
 	map("n", "<leader>fX", function()
-		misc.chmod("-")
+		base.chmod("-")
 	end, { desc = "chmod -x <current-buffer>" })
 end
 

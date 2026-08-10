@@ -6,6 +6,7 @@ local state = {
 
 local M = {}
 
+-- A lua function to toggle terminal horizontally
 function M.toggle_terminal()
 	-- If the window exists and is valid, hide it
 	if vim.api.nvim_win_is_valid(state.win) then
@@ -38,6 +39,28 @@ function M.toggle_terminal()
 
 	-- Enter insert mode automatically
 	vim.cmd("startinsert")
+end
+
+-- A lua function to change the current buffer to executable permission
+function M.chmod(mode)
+	mode = mode or "x"
+	local file = vim.fn.expand("%")
+	local sign = mode == "x" and "+" or "-"
+	local result = os.execute("chmod " .. sign .. "x " .. vim.fn.shellescape(file))
+
+	if result == 0 then
+		vim.notify(
+			"chmod " .. sign .. "x → " .. vim.fn.fnamemodify(file, ":t"),
+			vim.log.levels.INFO,
+			{ title = "File Permissions" }
+		)
+	else
+		vim.notify(
+			"Failed to chmod " .. sign .. "x → " .. vim.fn.fnamemodify(file, ":t"),
+			vim.log.levels.ERROR,
+			{ title = "File Permissions" }
+		)
+	end
 end
 
 return M
