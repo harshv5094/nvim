@@ -9,9 +9,14 @@ discipline.cowboy()
 g.mapleader = " "
 g.maplocalleader = "\\"
 
--- Disable netrw plugin
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+-- netrw options
+-- g.loaded_netrw = 1
+-- g.loaded_netrwPlugin = 1
+g.netrw_liststyle = 3 -- Tree View
+g.netrw_banner = 1 -- hide the top banner
+g.netrw_winsize = 25 -- Fix the left space width
+g.netrw_browse_split = 0 -- Open files in the previous window
+g.netrw_altfile = 1 -- keep the alternate file correct
 
 local has = function(x)
 	return vim.fn.has(x) == 1
