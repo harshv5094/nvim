@@ -1,4 +1,4 @@
--- Install with: cargo install --features lsp --locked taplo-cli
+-- Binary (taplo) installed by mason (see plugins/mason.lua).
 
 ---@type vim.lsp.Config
 return {

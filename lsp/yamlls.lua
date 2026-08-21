@@ -1,4 +1,4 @@
--- Install with: npm i -g yaml-language-server
+-- Binary (yaml-language-server) installed by mason (see plugins/mason.lua).
 
 ---@type vim.lsp.Config
 return {

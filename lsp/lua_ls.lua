@@ -1,5 +1,5 @@
--- NOTE: To enable it run `:lua vim.lsp.enable('lua_ls')`
--- TODO: Learn how to auto-enable it dynamically without using the above command
+-- Enabled automatically via config/autocmds.lua (scans lsp/*.lua and calls vim.lsp.enable).
+-- Binary installed by mason (see plugins/mason.lua).
 
 ---@type vim.lsp.Config
 return {
