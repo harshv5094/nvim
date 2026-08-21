@@ -5,9 +5,6 @@ local base = require("utils.base")
 
 local opts = { noremap = true, silent = true }
 
--- Netrw Explorer keymap
-map("n", "<leader>e", "<CMD>Explore<CR>", { desc = "Explore", noremap = true, silent = true })
-
 -- Delete a word backwards
 map("n", "dw", 'vb"_d')
 
