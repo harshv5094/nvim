@@ -10,8 +10,8 @@ g.mapleader = " "
 g.maplocalleader = "\\"
 
 -- netrw options
--- g.loaded_netrw = 1
--- g.loaded_netrwPlugin = 1
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 g.netrw_liststyle = 3 -- Tree View
 g.netrw_banner = 1 -- hide the top banner
 g.netrw_winsize = 25 -- Fix the left space width
