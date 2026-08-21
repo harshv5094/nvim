@@ -73,5 +73,10 @@ map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover (alt)" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
 
+-- Toggle inlay hints globally (on by default; no-op on servers without support)
+map("n", "<leader>uh", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })
+
 -- Terminal toggle keymaps
 map({ "n", "t" }, "<leader>t", base.toggle_terminal, { desc = "Toggle Terminal" })

@@ -14,6 +14,9 @@ return {
 			workspace = {
 				checkThirdParty = false,
 			},
+			hint = {
+				enable = true,
+			},
 		},
 	},
 }

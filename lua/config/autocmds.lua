@@ -21,6 +21,9 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 			end)
 			:totable()
 		vim.lsp.enable(servers)
+
+		-- Enable inlay hints globally by default (toggle with <leader>uh)
+		vim.lsp.inlay_hint.enable(true)
 	end,
 })
 
