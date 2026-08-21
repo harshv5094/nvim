@@ -67,6 +67,20 @@ if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	end, { desc = "chmod -x <current-buffer>" })
 end
 
+-- Toggle LSP folding on/off for the current buffer
+map("n", "<leader>uf", function()
+	local cur = vim.wo.foldmethod
+	if cur == "expr" and vim.opt_local.foldexpr:get() == "v:lua.vim.lsp.foldexpr()" then
+		vim.opt_local.foldmethod = "manual"
+		vim.cmd("normal! zR")
+	else
+		vim.opt_local.foldmethod = "expr"
+		vim.opt_local.foldexpr = "v:lua.vim.lsp.foldexpr()"
+		vim.opt_local.foldtext = "v:lua.vim.lsp.foldtext()"
+		vim.cmd("normal! zx")
+	end
+end, { desc = "Toggle LSP folding" })
+
 -- LSP keymaps
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })

@@ -27,6 +27,19 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 	end,
 })
 
+-- Enable LSP-based folding for clients that support folding ranges
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "Enable LSP folding",
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client:supports_method("textDocument/foldingRange") then
+			vim.opt_local.foldmethod = "expr"
+			vim.opt_local.foldexpr = "v:lua.vim.lsp.foldexpr()"
+			vim.opt_local.foldtext = "v:lua.vim.lsp.foldtext()"
+		end
+	end,
+})
+
 -- Auto clear prompt message after moving the cursor
 vim.api.nvim_create_autocmd("CursorMoved", {
 	group = vim.api.nvim_create_augroup("ClearPrompt", { clear = true }),
