@@ -81,9 +81,12 @@ end, { desc = "Toggle LSP folding" })
 -- LSP keymaps
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })
+map({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover (alt)" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
 map("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
+map("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto T[y]pe Definition" })
+map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
 
 -- Quit while asking
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
