@@ -26,6 +26,11 @@ return {
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>x", group = "diagnostics/quickfix" },
 				{ "<leader>q", group = "quit/session" },
+				{ "[", group = "prev" },
+				{ "]", group = "next" },
+				{ "g", group = "goto" },
+				{ "gs", group = "surround" },
+				{ "z", group = "fold" },
 				{
 					"<leader>b",
 					group = "buffer",
