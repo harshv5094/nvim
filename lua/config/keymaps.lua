@@ -85,6 +85,9 @@ map("n", "K", vim.lsp.buf.hover, { desc = "Hover (alt)" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
 map("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
 
+-- Quit while asking
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
 -- Toggle inlay hints globally (on by default; no-op on servers without support)
 map("n", "<leader>uh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
