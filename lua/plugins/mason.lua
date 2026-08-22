@@ -1,7 +1,7 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		version = "v2.0.0",
+		version = "v2.*",
 		cmd = "Mason",
 		config = function()
 			require("mason").setup({
@@ -14,6 +14,13 @@ return {
 				},
 			})
 		end,
+		keys = {
+			{
+				"<leader>cm",
+				"<CMD>Mason<CR>",
+				{ desc = "Mason" },
+			},
+		},
 	},
 
 	{
