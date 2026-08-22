@@ -13,82 +13,28 @@ return {
 		event = "VeryLazy",
 		opts = {
 			preset = "helix",
-		},
-		config = function(_, opts)
-			require("which-key").setup(opts)
-			require("which-key").add({
-				{
-					"<leader>c",
-					group = "code",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>g",
-					group = "git",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>gh",
-					group = "hunks",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>gs",
-					group = "status",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>gc",
-					group = "commit",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>s",
-					group = "search",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>u",
-					group = "ui",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>f",
-					group = "file/find",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>x",
-					group = "diagnostics",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
+			defaults = {},
+			spec = {
+				mode = { "n", "x" },
+				{ "<leader>c", group = "code" },
+				{ "<leader>g", group = "git" },
+				{ "<leader>gh", group = "hunks" },
+				{ "<leader>gs", group = "status" },
+				{ "<leader>gc", group = "commit" },
+				{ "<leader>s", group = "search" },
+				{ "<leader>u", group = "ui" },
+				{ "<leader>f", group = "file/find" },
+				{ "<leader>x", group = "diagnostics/quickfix" },
+				{ "<leader>q", group = "quit/session" },
 				{
 					"<leader>b",
-					group = "buffers",
+					group = "buffer",
 					expand = function()
 						return require("which-key.extras").expand.buf()
 					end,
 				},
-			})
-		end,
+			},
+		},
 	},
 
 	-- NOTE: Floating file name/statusline
