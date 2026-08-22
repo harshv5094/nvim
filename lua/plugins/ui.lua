@@ -18,6 +18,7 @@ return {
 				mode = { "n", "x" },
 				{ "<leader>c", group = "code" },
 				{ "<leader>g", group = "git" },
+				{ "<leader>ga", group = "add" },
 				{ "<leader>gh", group = "hunks" },
 				{ "<leader>gs", group = "status" },
 				{ "<leader>gc", group = "commit" },
