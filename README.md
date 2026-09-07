@@ -33,38 +33,6 @@ lua/
 lsp/                     -> per-server LSP configs (vim.lsp.Config), auto-loaded
 ```
 
-## LSP & Mason
-
-Language servers are configured with the **native LSP API** (no `nvim-lspconfig`).
-Each server lives in its own file under `lsp/` and returns a `vim.lsp.Config` table,
-e.g. `lsp/lua_ls.lua`, `lsp/bashls.lua`, `lsp/yamlls.lua`, `lsp/taplo.lua`.
-
-They are enabled automatically by an autocommand in `lua/config/autocmds.lua`, which
-scans every `lsp/*.lua` on the runtime path and calls `vim.lsp.enable(servers)` once on
-the first buffer open. It also merges blink.cmp's capabilities into every client.
-
-[Mason](https://github.com/mason-org/mason.nvim) is used purely as a **binary provider**.
-On `setup()` it prepends `~/.local/share/nvim/mason/bin` to `$PATH`, so the bare command
-names used in `lsp/*.lua` (e.g. `"lua-language-server"`) resolve to Mason-managed binaries
-with **no changes** to the server configs.
-
-Setup lives in `lua/plugins/mason.lua` and uses two plugins:
-
-- `mason-org/mason.nvim` — the core (UI + PATH wiring). The `version = "v2.0.0"` pin is
-  intentional: it keeps you on the v2 line and away from the old archived fork / unstable
-  default branch.
-- `WhoIsSethDaniel/mason-tool-installer.nvim` — ensures the following are installed
-  automatically on startup (`automatic_installation = true`):
-
-  | Kind      | Packages                                                       |
-  | --------- | -------------------------------------------------------------- |
-  | LSP       | `lua-language-server`, `bash-language-server`, `yaml-language-server`, `taplo` |
-  | Formatter | `stylua`                                                       |
-  | Linter    | `shellcheck`, `shfmt`                                          |
-
-`bashls` additionally relies on `shellcheck` (diagnostics) and `shfmt` (formatting), both
-provided by Mason. `yamlls` uses `SchemaStore.nvim` (already a plugin) for schemas.
-
 ### Verify
 
 - `:Mason` — the six packages should reach **Installed**.
