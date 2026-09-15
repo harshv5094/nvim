@@ -1,3 +1,4 @@
+local base_utils = require("utils.base")
 return {
 	-- NOTE: A plugin for undo files checking
 	{
@@ -17,15 +18,19 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
+			"nvim-telescope/telescope-file-browser.nvim",
+			"nvim-telescope/telescope-frecency.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			{ "nvim-telescope/telescope-file-browser.nvim", build = "make" },
 		},
 		config = function()
 			local keymap = vim.keymap
 			local telescope = require("telescope")
 			local builtin = require("telescope.builtin")
 			local actions = require("telescope.actions")
-			local fb_actions = telescope.extensions.file_browser.actions
+			local themes = require("telescope.themes")
+			local extensions = telescope.extensions
+			local fb_actions = extensions.file_browser.actions
 
 			-- Builtin keymaps
 			keymap.set("n", "<leader><space>", builtin.find_files, { desc = "Telescop -> Find Files" })
@@ -38,7 +43,7 @@ return {
 			keymap.set("n", "<leader>xf", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
 
 			keymap.set("n", "<leader>uC", function()
-				require("telescope.builtin").colorscheme({ enable_preview = true })
+				builtin.colorscheme({ enable_preview = true })
 			end, { desc = "Colorscheme" })
 
 			-- Neovim Config file keymap
@@ -49,14 +54,23 @@ return {
 				})
 			end, { desc = "Neovim Config Files" })
 
+			-- Intelligent find file function
+			keymap.set("n", "<leader>sf", function()
+				extensions.frecency.frecency({
+					prompt_title = "Find Files",
+					cwd = base_utils.project_root(),
+					workspace = "CWD",
+					hidden = true,
+				})
+			end, { desc = "Telescope -> Find files" })
+
 			-- Telescope file browser
 			keymap.set("n", "sf", function()
-				local telescope = require("telescope")
 				local function telescope_buffer_dir()
 					return vim.fn.expand("%:p:h")
 				end
 
-				telescope.extensions.file_browser.file_browser({
+				extensions.file_browser.file_browser({
 					path = "%:p:h",
 					cwd = telescope_buffer_dir(),
 					respect_gitignore = true,
@@ -132,11 +146,19 @@ return {
 							},
 						},
 					},
+					frecency = {
+						db_safe_mode = false,
+						db_validate_threshold = 0,
+						show_filter_column = false,
+					},
+					["ui-select"] = themes.get_dropdown({}),
 				},
 			})
 
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("file_browser")
+			telescope.load_extension("fzf")
+			telescope.load_extension("file_browser")
+			telescope.load_extension("ui-select")
+			telescope.load_extension("frecency")
 		end,
 	},
 

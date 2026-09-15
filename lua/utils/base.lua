@@ -66,4 +66,9 @@ function M.chmod(mode)
 	end
 end
 
+-- A lua function to get project root dir path (whether you are in git path or not)
+function M.project_root()
+	return vim.fs.root(0, { ".git" }) or vim.fs.root(vim.fn.getcwd(), { ".git" }) or vim.fn.getcwd()
+end
+
 return M
