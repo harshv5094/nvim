@@ -238,12 +238,12 @@ return {
 		---@type oil.SetupOpts
 		opts = {
 			default_file_explorer = true,
-		},
-		columns = {
-			"icon",
-			"permissions",
-			"size",
-			-- "mtime",
+			columns = {
+				-- "permissions",
+				"size",
+				-- "mtime",
+				"icon",
+			},
 		},
 		keys = {
 			{ "<leader>e", "<CMD>Oil<CR>", { desc = "Open Directory" } },
