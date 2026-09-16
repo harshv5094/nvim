@@ -18,4 +18,13 @@ return {
 			require("mini.pairs").setup()
 		end,
 	},
+
+	-- NOTE: Mini Icons library
+	{
+		"nvim-mini/mini.icons",
+		version = false,
+		config = function()
+			require("mini.icons").setup()
+		end,
+	},
 }
