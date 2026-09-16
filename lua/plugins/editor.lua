@@ -1,4 +1,5 @@
 local base_utils = require("utils.base")
+
 return {
 	-- NOTE: A plugin for undo files checking
 	{
@@ -119,7 +120,7 @@ return {
 					file_browser = {
 						-- theme = "ivy",
 						-- disables netrw and use telescope-file-browser in its place
-						hijack_netrw = true,
+						hijack_netrw = false,
 						mappings = {
 							-- your custom insert mode mappings
 							["n"] = {
@@ -227,5 +228,25 @@ return {
       { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
       { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
     },
+	},
+
+	-- NOTE: A neovim buffer like file manager
+	{
+		"stevearc/oil.nvim",
+		lazy = false,
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {
+			default_file_explorer = true,
+		},
+		columns = {
+			"icon",
+			"permissions",
+			"size",
+			-- "mtime",
+		},
+		keys = {
+			{ "<leader>e", "<CMD>Oil<CR>", { desc = "Open Directory" } },
+		},
 	},
 }
