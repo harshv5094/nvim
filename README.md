@@ -33,14 +33,6 @@ lua/
 lsp/                     -> per-server LSP configs (vim.lsp.Config), auto-loaded
 ```
 
-### Verify
-
-- `:Mason` — the six packages should reach **Installed**.
-- `:checkhealth mason` — no errors.
-- Open a `.lua` file and run `:lua print(vim.lsp.get_clients({name="lua_ls"})[1].config.cmd[1])`
-  — it should print a path under the Mason `bin/` directory.
-- `:LspLog` opens the LSP log if a server fails to spawn.
-
 ## Plugins at a glance
 
 Plugins are split into focused specs under `lua/plugins/`:
@@ -51,14 +43,3 @@ Plugins are split into focused specs under `lua/plugins/`:
   `editor.lua` — UI, treesitter, git, and editing conveniences
 
 Open `:Lazy` to see everything installed and `:Lazy help` for usage.
-
-## Keybindings
-
-Defined in `lua/config/keymaps.lua`. Highlights:
-
-- `<leader>e` — netrw explorer
-- `<leader>l` — `:Lazy`
-- `<leader>ca` — code action, `<leader>cr` — rename, `K` — hover, `gd` — definition
-- `<leader>xx` — Trouble diagnostics
-- `<leader>gi` — custom git init
-- `<leader>t` — toggle terminal
