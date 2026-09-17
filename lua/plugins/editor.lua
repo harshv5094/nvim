@@ -240,7 +240,7 @@ return {
 			default_file_explorer = true,
 			columns = {
 				-- "permissions",
-				"size",
+				-- "size",
 				-- "mtime",
 				"icon",
 			},
