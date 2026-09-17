@@ -51,6 +51,8 @@ return {
 			map("n", "gtd", gs.toggle_deleted, "Toggle deleted")
 			-- Text object
 			map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Select hunk")
+			-- quit/close in normal mode
+			map("n", "q", "<cmd>close<CR>", "Close window")
 		end,
 	},
 }
