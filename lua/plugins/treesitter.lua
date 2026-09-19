@@ -4,6 +4,9 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
 		build = ":TSUpdate",
+		-- Load after mason so the tree-sitter CLI (installed by
+		-- mason-tool-installer) is on PATH before parsers install.
+		dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
 		config = function()
 			local parsers = {
 				"bash",
@@ -16,7 +19,27 @@ return {
 				"lua",
 				"luadoc",
 			}
-			require("nvim-treesitter").install(parsers)
+			local install_parsers = function()
+				if vim.fn.executable("tree-sitter") == 1 then
+					require("nvim-treesitter").install(parsers)
+				else
+					vim.notify(
+						"tree-sitter CLI not found; skipping parser install",
+						vim.log.levels.WARN,
+						{ title = "nvim-treesitter" }
+					)
+				end
+			end
+			if vim.fn.executable("tree-sitter") == 1 then
+				install_parsers()
+			else
+				-- tree-sitter-cli installs async via mason; retry once mason is done.
+				vim.api.nvim_create_autocmd("User", {
+					pattern = "MasonToolsUpdateCompleted",
+					once = true,
+					callback = install_parsers,
+				})
+			end
 		end,
 	},
 

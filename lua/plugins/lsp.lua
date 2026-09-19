@@ -106,6 +106,10 @@ return {
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
+					-- Installed first: required by nvim-treesitter to
+					-- compile/install parsers (see plugins/treesitter.lua).
+					{ "tree-sitter-cli", auto_update = true },
+
 					-- LSP servers
 					"lua-language-server",
 					"bash-language-server",
@@ -117,8 +121,6 @@ return {
 					"shellcheck",
 					"shfmt",
 				},
-				automatic_installation = true,
-				run_on = { "BufReadPre", "VeryLazy" },
 			})
 		end,
 	},
