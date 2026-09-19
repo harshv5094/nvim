@@ -12,7 +12,7 @@ return {
 	-- NOTE: Pairing plugin for [], {} and ()
 	{
 		"nvim-mini/mini.pairs",
-		event = "BufReadPre",
+		event = "InsertEnter",
 		version = false,
 		config = function()
 			require("mini.pairs").setup()
@@ -31,7 +31,7 @@ return {
 	-- NOTE: Improved `f,F,t,T,;` jumps.
 	{
 		"nvim-mini/mini.jump",
-		event = "BufReadPre",
+		event = "CursorMoved",
 		version = false,
 		config = function()
 			require("mini.jump").setup()

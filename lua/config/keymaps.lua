@@ -43,7 +43,7 @@ map(
 )
 
 -- Custom utility to convert hex to rgba
-map("n", "<localleader>cs", function()
+map("n", "<localleader>cr", function()
 	hex2rgba.Set()
 end, { desc = "Convert Hex to RGBA", silent = true, noremap = true })
 

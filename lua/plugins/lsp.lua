@@ -120,6 +120,7 @@ return {
 					"stylua",
 					"shellcheck",
 					"shfmt",
+					"luacheck",
 				},
 			})
 		end,

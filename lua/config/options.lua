@@ -25,7 +25,6 @@ end
 if has("win32") then
 	opt.shell = "pwsh"
 	opt.clipboard:prepend({ "unnamed", "unnamedplus" })
-	g.nofsync = true
 end
 
 if has("macunix") then
