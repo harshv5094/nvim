@@ -27,14 +27,4 @@ return {
 			require("mini.icons").setup()
 		end,
 	},
-
-	-- NOTE: Improved `f,F,t,T,;` jumps.
-	{
-		"nvim-mini/mini.jump",
-		event = "CursorMoved",
-		version = false,
-		config = function()
-			require("mini.jump").setup()
-		end,
-	},
 }
