@@ -70,7 +70,7 @@ return {
 					},
 				},
 			},
-			fuzzy = { implementation = "lua" },
+			fuzzy = { implementation = "prefer_rust" },
 		},
 	},
 
