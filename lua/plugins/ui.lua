@@ -177,6 +177,24 @@ return {
 		},
 	},
 
+	-- install with yarn or npm
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && yarn install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+		keys = {
+			{
+				"<leader>cp",
+				"<CMD>MarkdownPreviewToggle<CR>",
+				desc = "Markdown Preview",
+			},
+		},
+	},
+
 	-- NOTE: An LSP Overlay progress
 	{
 		"j-hui/fidget.nvim",
