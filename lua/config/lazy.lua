@@ -42,9 +42,9 @@ do
 			return orig_install_missing(...)
 		end
 		table.sort(missing)
-		local names = table.concat(missing, "\n- ", 1, math.min(#missing, 10))
+		local names = table.concat(missing, "\n- ", 1, math.min(#missing, 5))
 		if #missing > 10 then
-			names = names .. "\n- ... (and " .. (#missing - 10) .. " more)"
+			names = names .. "\n- ... (and " .. (#missing - 5) .. " more)"
 		end
 		local choice = vim.fn.confirm(
 			"Missing plugins detected (" .. #missing .. "):\n- " .. names .. "\n\nInstall missing plugins?",
