@@ -1,12 +1,15 @@
-local map = vim.keymap.set
+-- Custom Utility Function
 local git = require("utils.git")
-local hex2rgba = require("utils.hex2rgba")
 local base = require("utils.base")
+local discipline = require("utils.discipline")
 
+discipline.cowboy()
+
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Delete a word backwards
-map("n", "dw", 'vb"_d')
+map("n", "dw", 'vb"_d', opts)
 
 -- Redo - make U the opposite of u
 map("n", "U", "<C-r>", { desc = "Redo" })
@@ -45,13 +48,8 @@ map(
 	"n",
 	"<localleader>s",
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "String auto replace", noremap = true }
+	{ desc = "Search and Replace (Buffer)", noremap = true }
 )
-
--- Custom utility to convert hex to rgba
-map("n", "<localleader>cr", function()
-	hex2rgba.Set()
-end, { desc = "Convert Hex to RGBA", silent = true, noremap = true })
 
 -- Rename whole variables in the buffer
 map("n", "rn", function()
