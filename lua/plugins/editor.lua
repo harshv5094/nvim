@@ -50,7 +50,7 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		config = function()
-			local keymap = vim.keymap
+			local map = vim.keymap.set
 			local telescope = require("telescope")
 			local builtin = require("telescope.builtin")
 			local actions = require("telescope.actions")
@@ -59,21 +59,21 @@ return {
 			local fb_actions = extensions.file_browser.actions
 
 			-- Builtin keymaps
-			keymap.set("n", "<leader><space>", builtin.find_files, { desc = "Telescop -> Find Files" })
-			keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Telescope -> Live Grep" })
-			keymap.set("n", "<leader>,", builtin.buffers, { desc = "Telescope -> Buffers" })
-			keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope -> Help Tags" })
-			keymap.set("n", "<leader>sm", builtin.man_pages, { desc = "Telescope -> Man Pages" })
-			keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope -> Keymaps" })
-			keymap.set("n", "<leader>:", builtin.command_history, { desc = "Telescope -> Command History" })
-			keymap.set("n", "<leader>xf", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
+			map("n", "<leader><space>", builtin.find_files, { desc = "Telescop -> Find Files" })
+			map("n", "<leader>/", builtin.live_grep, { desc = "Telescope -> Live Grep" })
+			map("n", "<leader>,", builtin.buffers, { desc = "Telescope -> Buffers" })
+			map("n", "<leader>sh", builtin.help_tags, { desc = "Telescope -> Help Tags" })
+			map("n", "<leader>sm", builtin.man_pages, { desc = "Telescope -> Man Pages" })
+			map("n", "<leader>sk", builtin.keymaps, { desc = "Telescope -> Keymaps" })
+			map("n", "<leader>:", builtin.command_history, { desc = "Telescope -> Command History" })
+			map("n", "<leader>xf", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
 
-			keymap.set("n", "<leader>uC", function()
+			map("n", "<leader>uC", function()
 				builtin.colorscheme({ enable_preview = true })
 			end, { desc = "Colorscheme" })
 
 			-- Neovim Config file keymap
-			keymap.set("n", "<leader>fc", function()
+			map("n", "<leader>fc", function()
 				require("telescope.builtin").find_files({
 					prompt_title = "Neovim Config Files",
 					cwd = vim.fn.stdpath("config"),
@@ -81,7 +81,7 @@ return {
 			end, { desc = "Neovim Config Files" })
 
 			-- Intelligent find file function
-			keymap.set("n", "<leader>sf", function()
+			map("n", "<leader>sf", function()
 				extensions.frecency.frecency({
 					prompt_title = "Find Files",
 					cwd = base_utils.project_root(),
@@ -91,7 +91,7 @@ return {
 			end, { desc = "Telescope -> Find files" })
 
 			-- Telescope file browser
-			keymap.set("n", "sf", function()
+			map("n", "sf", function()
 				local function telescope_buffer_dir()
 					return vim.fn.expand("%:p:h")
 				end
