@@ -262,7 +262,20 @@ return {
 		---@module 'oil'
 		---@type oil.SetupOpts
 		opts = {
-			default_file_explorer = true,
+			default_file_explorer = true, -- Set oil.nvim as the default file explorer
+			-- Oil will automatically delete hidden buffers after this delay
+			cleanup_delay_ms = 3000,
+			lsp_file_methods = {
+				-- Enable or disable LSP file operations
+				enabled = true,
+				-- Time to wait for LSP file operations to complete before skipping
+				timeout_ms = 1000,
+				-- Set to true to autosave buffers that are updated with LSP willRenameFiles
+				-- Set to "unmodified" to only save unmodified buffers
+				autosave_changes = false,
+			},
+			-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
+			delete_to_trash = true,
 			columns = {
 				-- "permissions",
 				-- "size",
