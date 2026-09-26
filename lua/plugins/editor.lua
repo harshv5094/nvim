@@ -68,6 +68,15 @@ return {
 			map("n", "<leader>:", builtin.command_history, { desc = "Telescope -> Command History" })
 			map("n", "<leader>xf", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
 
+			-- Keymap for searching lazy.nvim plugin directory
+			map("n", "<leader>fP", function()
+				builtin.find_files({
+					prompt_title = "Find Files (lazy.nvim plugins)",
+					cwd = require("lazy.core.config").options.root,
+				})
+			end, { desc = "Telescope -> Find Files from lazy config root" })
+
+			-- Colorscheme keymap
 			map("n", "<leader>uC", function()
 				builtin.colorscheme({ enable_preview = true })
 			end, { desc = "Colorscheme" })
@@ -78,7 +87,7 @@ return {
 					prompt_title = "Neovim Config Files",
 					cwd = vim.fn.stdpath("config"),
 				})
-			end, { desc = "Neovim Config Files" })
+			end, { desc = "Telescope -> Config Files" })
 
 			-- Intelligent find file function
 			map("n", "<leader>sf", function()
