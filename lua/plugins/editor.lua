@@ -268,6 +268,7 @@ return {
 	{
 		"stevearc/oil.nvim",
 		lazy = false,
+		priority = 1200,
 		---@module 'oil'
 		---@type oil.SetupOpts
 		opts = {
