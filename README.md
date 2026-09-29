@@ -10,8 +10,8 @@ Lightweight version of my neovim configuration.
 
 ## Install
 
-```sh
-git clone <your-repo-url> ~/.config/mnvim
+```bash
+git clone <your-repo-url> ~/.config/nvim
 nvim
 ```
 
