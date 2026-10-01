@@ -34,7 +34,27 @@ function M.toggle_terminal()
 	-- Restart the terminal only if there is no live job (covers dead/exited shells)
 	local job_running = state.job_id ~= -1 and vim.fn.jobwait({ state.job_id }, 0)[1] == -1
 	if not job_running then
-		state.job_id = vim.fn.jobstart(vim.o.shell, { term = true })
+		state.job_id = vim.fn.jobstart(vim.o.shell, {
+			term = true,
+			on_exit = function(_, code, _)
+				vim.schedule(function()
+					-- Guard: only close if the window is still showing our terminal buffer
+					if vim.api.nvim_win_is_valid(state.win) and vim.api.nvim_win_get_buf(state.win) == state.buf then
+						vim.api.nvim_win_hide(state.win)
+					end
+					state.win = -1
+					state.job_id = -1
+					-- Clean up the buffer so next toggle starts fresh
+					if vim.api.nvim_buf_is_valid(state.buf) then
+						vim.api.nvim_buf_delete(state.buf, { force = true })
+						state.buf = -1
+					end
+					if code ~= 0 then
+						vim.notify("Terminal exited with code " .. code, vim.log.levels.WARN, { title = "Terminal" })
+					end
+				end)
+			end,
+		})
 		vim.wo[state.win].number = false
 		vim.wo[state.win].relativenumber = false
 		vim.wo[state.win].signcolumn = "no"
