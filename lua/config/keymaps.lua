@@ -8,6 +8,15 @@ discipline.cowboy()
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+-- Clear search and stop snippet on escape
+map({ "i", "n", "s" }, "<esc>", function()
+	vim.cmd("noh")
+	if vim.snippet and vim.snippet.active() then
+		vim.snippet.stop()
+	end
+	return "<esc>"
+end, { expr = true, desc = "Escape and Clear hlsearch" })
+
 -- Delete a word backwards
 map("n", "dw", 'vb"_d', opts)
 
