@@ -96,4 +96,4 @@ map("n", "<leader>uh", function()
 end, { desc = "Toggle inlay hints" })
 
 -- Terminal toggle keymaps
-map({ "n", "t" }, "<leader>t", base.toggle_terminal, { desc = "Toggle Terminal" })
+map({ "n", "t" }, "<leader>ft", base.toggle_terminal, { desc = "Toggle Terminal" })
