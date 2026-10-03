@@ -65,6 +65,7 @@ return {
 			map("n", "<leader>sk", builtin.keymaps, { desc = "Telescope -> Keymaps" })
 			map("n", "<leader>:", builtin.command_history, { desc = "Telescope -> Command History" })
 			map("n", "<leader>xf", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
+			map("n", "<leader>gst", builtin.git_status, { desc = "Telescope -> Git Status" })
 
 			-- Keymap for searching lazy.nvim plugin directory
 			map("n", "<leader>fP", function()
