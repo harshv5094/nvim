@@ -16,7 +16,7 @@ nvim
 ```
 
 On first launch, [lazy.nvim](https://github.com/folke/lazy.nvim) bootstraps itself and
-installs all plugins. Mason then auto-installs the LSP servers and tools listed below.
+installs all plugins. Mason then auto-installs the LSP servers and tools declared in `lsp.lua`.
 
 ## Structure
 
@@ -37,9 +37,12 @@ lsp/                     -> per-server LSP configs (vim.lsp.Config), auto-loaded
 
 Plugins are split into focused specs under `lua/plugins/`:
 
-- `lsp.lua` — `lazydev.nvim` + `blink.cmp` completion
-- `format.lua` — `conform.nvim` (stylua for lua)
-- `ui.lua`, `colorscheme.lua`, `treesitter.lua`, `mini.lua`, `gitsigns.lua`, `coding.lua`,
-  `editor.lua` — UI, treesitter, git, and editing conveniences
+- `lsp.lua` — `lazydev.nvim`, `blink.cmp` completion, Mason + tool installer
+- `format.lua` — `conform.nvim` (stylua for lua, shfmt for shell)
+- `lint.lua` — `nvim-lint` (luacheck for lua, shellcheck for shell)
+- `git.lua` — `gitsigns.nvim` + `vim-fugitive`
+- `editor.lua` — `telescope.nvim`, `oil.nvim`, `grug-far.nvim`, undotree, sessions, dial, lazygit
+- `ui.lua`, `00-colorscheme.lua`, `treesitter.lua`, `mini.lua`, `coding.lua` — UI, treesitter,
+  colorscheme, and editing conveniences
 
 Open `:Lazy` to see everything installed and `:Lazy help` for usage.
