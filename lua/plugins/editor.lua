@@ -30,12 +30,9 @@ return {
 	{
 		"mbbill/undotree",
 		event = "BufReadPre",
+    -- stylua: ignore
 		keys = {
-			{
-				"<leader>uu",
-				"<CMD>UndotreeToggle<CR>",
-				desc = "Undotree Toggle",
-			},
+			{ "<leader>fu", "<CMD>UndotreeToggle<CR>", desc = "Undotree Toggle" },
 		},
 	},
 	-- NOTE: Telescope.nvim (finder, picker etc)
@@ -75,7 +72,7 @@ return {
 					prompt_title = "Find Files (lazy.nvim plugins)",
 					cwd = require("lazy.core.config").options.root,
 				})
-			end, { desc = "Telescope -> Find Files from lazy config root" })
+			end, { desc = "Telescope -> Find files from lazy config root" })
 
 			-- Colorscheme keymap
 			map("n", "<leader>uC", function()
@@ -316,7 +313,7 @@ return {
 		-- setting the keybinding for LazyGit with 'keys' is recommended in
 		-- order to load the plugin when the command is run for the first time
 		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+			{ "<leader>gg", "<Cmd>LazyGit<CR>", desc = "LazyGit" },
 		},
 	},
 }
