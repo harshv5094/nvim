@@ -96,10 +96,22 @@ map("n", "<leader>uh", function()
 end, { desc = "Toggle inlay hints", noremap = true })
 
 -- Toggle codelens (global)
-vim.keymap.set("n", "<leader>uc", function()
+map("n", "<leader>uc", function()
 	vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
 end, { desc = "Toggle Codelens", noremap = true })
 
 -- Terminal toggle keymaps
-map({ "n", "t" }, "<leader>ft", base.toggle_terminal, { desc = "Toggle Terminal" })
-map({ "n", "t" }, "<leader>fT", base.float_term, { desc = "Toggle Float Terminal" })
+map({ "n", "t" }, "<C-`>", function()
+	base.terminal({ type = "split", size = 0.35, shared = true })
+end, opts)
+map({ "n", "t" }, "<C-\\>", function()
+	base.terminal({ type = "float", size = 0.8, shared = true })
+end, opts)
+
+-- Toggle LazyGit
+map({ "n", "t" }, "<leader>gg", function()
+	base.lazygit_toggle({ size = 0.9 })
+end, { desc = "LazyGit" })
+
+-- Escape keymap for terminal
+map("t", "<esc><esc>", "<C-\\><C-n>", opts)

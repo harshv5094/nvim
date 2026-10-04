@@ -33,3 +33,10 @@ vim.keymap.set("n", "<leader>ut", function()
 	virtual_text_on = not virtual_text_on
 	vim.diagnostic.config({ virtual_text = virtual_text_on and virtual_text_opts or false })
 end, { desc = "Toggle Virtual Text", noremap = true })
+
+vim.keymap.set("n", "[e", function()
+	vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Previous error" })
+vim.keymap.set("n", "]e", function()
+	vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Next error" })
