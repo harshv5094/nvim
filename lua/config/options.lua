@@ -2,78 +2,127 @@ local discipline = require("utils.discipline")
 local g = vim.g
 local opt = vim.opt
 
--- A discipline blocker for better horizontal / vertical navigation
+-- Block spammy hjkl / +/- navigation to build better habits
 discipline.cowboy()
 
--- Setting leader and localleader keys
+------------------------------------------------------------
+-- Leader keys
+------------------------------------------------------------
 g.mapleader = " "
 g.maplocalleader = "\\"
 
--- netrw options
+------------------------------------------------------------
+-- Netrw (built-in file explorer)
+------------------------------------------------------------
 -- g.loaded_netrw = 1
 -- g.loaded_netrwPlugin = 1
-g.netrw_liststyle = 3 -- Tree View
-g.netrw_banner = 1 -- hide the top banner
-g.netrw_winsize = 25 -- Fix the left space width
+g.netrw_liststyle = 3 -- Tree view
+g.netrw_banner = 1 -- Show the top banner (set 0 to hide)
+g.netrw_winsize = 25 -- Width of the netrw window
 g.netrw_browse_split = 0 -- Open files in the previous window
-g.netrw_altfile = 1 -- keep the alternate file correct
+g.netrw_altfile = 1 -- Keep the alternate file correct
 
+------------------------------------------------------------
+-- Shell
+------------------------------------------------------------
 if vim.fn.has("win32") == 1 then
 	opt.shell = "pwsh"
 end
 
+------------------------------------------------------------
+-- Encoding
+------------------------------------------------------------
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
-opt.autowrite = true -- Enable auto write
--- only set clipboard if not in ssh, to make sure the OSC 52
--- integration works automatically.
+------------------------------------------------------------
+-- Clipboard
+------------------------------------------------------------
+-- Only set clipboard when not in SSH, so OSC 52 integration
+-- works automatically over remote connections.
 opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus" -- Sync with system clipboard
-opt.completeopt = "menu,menuone,noselect"
-opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
-opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.title = true
-opt.relativenumber = true
-opt.termguicolors = true
-opt.foldlevel = 99
-opt.foldmethod = "indent"
-opt.autoindent = true
-opt.smartindent = true
-opt.autoread = true
-opt.hlsearch = true
-opt.backup = false
-opt.showcmd = true
-opt.cmdheight = 1
-opt.laststatus = 3
-opt.expandtab = true
-opt.scrolloff = 10
-opt.backupskip = { "/tmp/*", "/private/tmp/*" }
-opt.inccommand = "split"
-opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
-opt.smarttab = true
-opt.breakindent = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.pumblend = 10 -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.wrap = false -- No Wrap lines
-opt.swapfile = true -- Toggle swap files
-opt.undofile = true -- Toggle undofile
-opt.backspace = { "start", "eol", "indent" }
-opt.path:append({ "**" }) -- Finding files - Search down into subfolders
-opt.wildignore:append({ "*/node_modules/*" })
-opt.splitbelow = true -- Put new windows below current
-opt.splitkeep = "screen"
-opt.splitright = true -- Put new windows right of current
--- Setting up basic options
-opt.cursorline = true --Highlighted cursorline
-opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
--- opt.mouse = "a"
 
--- Undercurl
+------------------------------------------------------------
+-- UI / Appearance
+------------------------------------------------------------
+opt.title = true -- Show file name in the window title
+opt.termguicolors = true -- Enable 24-bit RGB colors
+opt.cursorline = true -- Highlight the current line
+opt.relativenumber = true -- Relative line numbers
+opt.laststatus = 3 -- Single global statusline
+opt.cmdheight = 1 -- Height of the command line
+opt.showcmd = true -- Show partial commands in the last line
+opt.scrolloff = 10 -- Keep 10 lines visible above/below cursor
+opt.conceallevel = 2 -- Hide markup (e.g. bold/italic markers) unless it has substitutions
+-- opt.mouse = "a" -- Enable mouse support (disabled)
+
+------------------------------------------------------------
+-- Search
+------------------------------------------------------------
+opt.hlsearch = true -- Highlight all search matches
+opt.ignorecase = true -- Case-insensitive search UNLESS /C or capitals are used
+opt.smartcase = true -- Override 'ignorecase' when the search has capitals
+opt.inccommand = "split" -- Live preview of :substitute in a split
+opt.path:append({ "**" }) -- Search recursively into subfolders (gf, :find)
+opt.wildignore:append({ "*/node_modules/*", "*/.git/*" }) -- Ignore node_modules and .git in searches
+
+------------------------------------------------------------
+-- Indentation & Tabs
+------------------------------------------------------------
+opt.expandtab = true -- Use spaces instead of tabs
+opt.shiftwidth = 2 -- Indent size (>>, <<, autoindent)
+opt.tabstop = 2 -- Width of a tab character
+opt.smarttab = true -- Use shiftwidth at line start, tabstop elsewhere
+opt.autoindent = true -- Copy indent from current line on new line
+opt.smartindent = true -- Smart auto-indenting for C-like code
+opt.breakindent = true -- Wrapped lines keep the same indent level
+
+-- Add asterisks in block comments when pressing Enter
+opt.formatoptions:append({ "r" })
+
+------------------------------------------------------------
+-- Text display
+------------------------------------------------------------
+opt.wrap = false -- Do not wrap long lines
+
+------------------------------------------------------------
+-- Completion
+------------------------------------------------------------
+opt.completeopt = "menu,menuone,noselect,popup" -- Completion menu behavior
+
+------------------------------------------------------------
+-- Files / Persistence
+------------------------------------------------------------
+opt.autowrite = true -- Auto-save when switching buffers / running commands
+opt.autoread = true -- Reload files changed outside of Neovim
+opt.backup = false -- Do not create backup files
+opt.writebackup = false -- Do not write a backup file before overwriting
+opt.backupskip = { "/tmp/*", "/private/tmp/*" } -- Skip backups for temp files
+opt.swapfile = true -- Use swap files for crash recovery
+opt.undofile = true -- Persist undo history across sessions
+
+------------------------------------------------------------
+-- Windows & Splits
+------------------------------------------------------------
+opt.splitbelow = true -- New horizontal splits open below
+opt.splitright = true -- New vertical splits open to the right
+opt.splitkeep = "screen" -- Keep text on screen when splitting
+
+------------------------------------------------------------
+-- Editing behavior
+------------------------------------------------------------
+opt.confirm = true -- Ask to save before discarding modified buffers
+opt.backspace = { "start", "eol", "indent" } -- Allow backspace over everything
+opt.foldlevel = 1 -- Start with folds closed past level 1
+opt.foldmethod = "indent" -- Fold based on indentation
+
+------------------------------------------------------------
+-- Popup & terminal UI
+------------------------------------------------------------
+opt.pumblend = 10 -- Transparency of popup menu (0-100)
+opt.pumheight = 5 -- Show at most 5 entries in the popup menu
+
+-- Undercurl support in supporting terminals
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
--- Add asterisks in block comments
-opt.formatoptions:append({ "r" })
