@@ -102,3 +102,4 @@ end, { desc = "Toggle Codelens", noremap = true })
 
 -- Terminal toggle keymaps
 map({ "n", "t" }, "<leader>ft", base.toggle_terminal, { desc = "Toggle Terminal" })
+map({ "n", "t" }, "<leader>fT", base.float_term, { desc = "Toggle Float Terminal" })

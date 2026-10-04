@@ -1,94 +1,171 @@
+local M = {}
+
+local config = {
+	height_fraction = 0.35,
+}
+
 local state = {
 	buf = -1,
 	win = -1,
 	job_id = -1,
-	height_fraction = 0.35,
 }
 
-local M = {}
+local function notify(msg, level)
+	vim.notify(msg, level or vim.log.levels.INFO, { title = "Utils" })
+end
 
--- A lua function to toggle terminal horizontally
+---@param opts? { height_fraction?: number }
+function M.setup(opts)
+	config = vim.tbl_extend("force", config, opts or {})
+end
+
+---Start a shell in the current buffer. `on_exit` runs scheduled, so it's safe to call the API.
+---@param on_exit fun(code: integer)
+---@return integer job_id
+local function spawn_shell(on_exit)
+	return vim.fn.jobstart(vim.o.shell, {
+		term = true,
+		on_exit = function(_, code)
+			vim.schedule(function()
+				on_exit(code)
+			end)
+		end,
+	})
+end
+
+---------------------------------------------------------------------------
+-- Bottom split terminal (toggle)
+---------------------------------------------------------------------------
+
+local function win_is_open()
+	return state.win ~= -1 and vim.api.nvim_win_is_valid(state.win)
+end
+
+local function job_is_running()
+	return state.job_id ~= -1 and vim.fn.jobwait({ state.job_id }, 0)[1] == -1
+end
+
+local function open_split()
+	if not vim.api.nvim_buf_is_valid(state.buf) then
+		state.buf = vim.api.nvim_create_buf(false, true)
+	end
+
+	state.win = vim.api.nvim_open_win(state.buf, true, {
+		split = "below",
+		win = -1, -- full-width, like `botright`
+		height = math.max(1, math.floor(vim.o.lines * config.height_fraction)),
+	})
+
+	-- Window-local options belong to the window, so set them on every open
+	for name, value in pairs({
+		number = false,
+		relativenumber = false,
+		signcolumn = "no",
+		winfixheight = true,
+	}) do
+		vim.wo[state.win][name] = value
+	end
+end
+
+local function start_shell()
+	local buf = state.buf -- captured so a stale callback can't clobber a newer terminal
+
+	state.job_id = spawn_shell(function(code)
+		if state.buf == buf then
+			state.buf, state.win, state.job_id = -1, -1, -1
+		end
+		if vim.api.nvim_buf_is_valid(buf) then
+			vim.api.nvim_buf_delete(buf, { force = true }) -- also closes its windows
+		end
+		if code ~= 0 then
+			notify("Terminal exited with code " .. code, vim.log.levels.WARN)
+		end
+	end)
+end
+
 function M.toggle_terminal()
-	-- If the window exists and is valid, hide it
-	if vim.api.nvim_win_is_valid(state.win) then
-		vim.api.nvim_win_hide(state.win)
-		state.win = -1
+	if win_is_open() then
+		if vim.api.nvim_get_current_win() == state.win then
+			vim.api.nvim_win_hide(state.win)
+			state.win = -1
+		else
+			vim.api.nvim_set_current_win(state.win)
+			vim.cmd.startinsert()
+		end
 		return
 	end
 
-	-- Calculate the terminal height as a fraction of the screen
-	local total_height = vim.o.lines
-	local term_height = math.max(1, math.floor(total_height * state.height_fraction))
-
-	-- Create or reuse buffer
-	if not vim.api.nvim_buf_is_valid(state.buf) then
-		state.buf = vim.api.nvim_create_buf(false, true) -- No file, scratch buffer
+	open_split()
+	if not job_is_running() then
+		start_shell()
 	end
-
-	-- Open the window at the bottom
-	vim.cmd("botright split")
-	state.win = vim.api.nvim_get_current_win()
-	vim.api.nvim_win_set_height(state.win, term_height)
-	vim.api.nvim_win_set_buf(state.win, state.buf)
-
-	-- Restart the terminal only if there is no live job (covers dead/exited shells)
-	local job_running = state.job_id ~= -1 and vim.fn.jobwait({ state.job_id }, 0)[1] == -1
-	if not job_running then
-		state.job_id = vim.fn.jobstart(vim.o.shell, {
-			term = true,
-			on_exit = function(_, code, _)
-				vim.schedule(function()
-					-- Guard: only close if the window is still showing our terminal buffer
-					if vim.api.nvim_win_is_valid(state.win) and vim.api.nvim_win_get_buf(state.win) == state.buf then
-						vim.api.nvim_win_hide(state.win)
-					end
-					state.win = -1
-					state.job_id = -1
-					-- Clean up the buffer so next toggle starts fresh
-					if vim.api.nvim_buf_is_valid(state.buf) then
-						vim.api.nvim_buf_delete(state.buf, { force = true })
-						state.buf = -1
-					end
-					if code ~= 0 then
-						vim.notify("Terminal exited with code " .. code, vim.log.levels.WARN, { title = "Terminal" })
-					end
-				end)
-			end,
-		})
-		vim.wo[state.win].number = false
-		vim.wo[state.win].relativenumber = false
-		vim.wo[state.win].signcolumn = "no"
-	end
-
-	-- Enter insert mode automatically
-	vim.cmd("startinsert")
+	vim.cmd.startinsert()
 end
 
--- A lua function to change the current buffer to executable permission
+---------------------------------------------------------------------------
+-- Floating terminal
+---------------------------------------------------------------------------
+
+---@param opts? { width?: number, height?: number }
+function M.float_term(opts)
+	opts = opts or {}
+
+	local max_w = vim.o.columns - 2 -- room for the border
+	local max_h = vim.o.lines - vim.o.cmdheight - 2
+
+	local width = math.min(opts.width or math.floor(vim.o.columns * 0.8), max_w)
+	local height = math.min(opts.height or math.floor(vim.o.lines * 0.8), max_h)
+
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.bo[buf].bufhidden = "wipe" -- don't leave the dead terminal buffer behind
+
+	local win = vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = math.floor((vim.o.columns - width - 2) / 2),
+		row = math.floor((max_h + 2 - height - 2) / 2),
+		style = "minimal",
+		border = "rounded",
+	})
+
+	spawn_shell(function()
+		if vim.api.nvim_win_is_valid(win) then
+			vim.api.nvim_win_close(win, true)
+		end
+	end)
+
+	vim.cmd.startinsert()
+	return buf, win
+end
+
+---------------------------------------------------------------------------
+-- Utilities
+---------------------------------------------------------------------------
+
+---Add (`"x"`, default) or remove (`"-x"` / anything else) the executable bit on the current file.
+---@param mode? string
 function M.chmod(mode)
-	mode = mode or "x"
-	local file = vim.fn.expand("%")
-	local sign = mode == "x" and "+" or "-"
-	local result = os.execute("chmod " .. sign .. "x " .. vim.fn.shellescape(file))
+	local file = vim.api.nvim_buf_get_name(0)
+	if file == "" then
+		return notify("Buffer has no file", vim.log.levels.WARN)
+	end
 
-	if result == 0 then
-		vim.notify(
-			"chmod " .. sign .. "x → " .. vim.fn.fnamemodify(file, ":t"),
-			vim.log.levels.INFO,
-			{ title = "File Permissions" }
-		)
+	local flag = (mode or "x") == "x" and "+x" or "-x"
+	local res = vim.system({ "chmod", flag, file }):wait()
+	local name = vim.fs.basename(file)
+
+	if res.code == 0 then
+		notify(("chmod %s → %s"):format(flag, name))
 	else
-		vim.notify(
-			"Failed to chmod " .. sign .. "x → " .. vim.fn.fnamemodify(file, ":t"),
-			vim.log.levels.ERROR,
-			{ title = "File Permissions" }
-		)
+		notify(("Failed to chmod %s → %s\n%s"):format(flag, name, res.stderr or ""), vim.log.levels.ERROR)
 	end
 end
 
--- A lua function to get project root dir path (whether you are in git path or not)
+---Project root (git root of the buffer, else of the cwd, else the cwd).
+---@return string
 function M.project_root()
-	return vim.fs.root(0, { ".git" }) or vim.fs.root(vim.fn.getcwd(), { ".git" }) or vim.fn.getcwd()
+	return vim.fs.root(0, ".git") or vim.fs.root(vim.fn.getcwd(), ".git") or vim.fn.getcwd()
 end
 
 return M
