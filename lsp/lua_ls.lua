@@ -8,11 +8,14 @@ return {
 	root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
 	settings = {
 		Lua = {
-			runtime = {
-				version = "LuaJIT",
+			codelens = {
+				enabled = true,
 			},
-			workspace = {
-				checkThirdParty = false,
+			completion = {
+				callSnippet = "Replace",
+			},
+			doc = {
+				privateName = { "^_" },
 			},
 			hint = {
 				enable = true,
@@ -21,6 +24,12 @@ return {
 				paramName = "Disable",
 				semicolon = "Disable",
 				arrayIndex = "Disable",
+			},
+			runtime = {
+				version = "LuaJIT",
+			},
+			workspace = {
+				checkThirdParty = false,
 			},
 		},
 	},
