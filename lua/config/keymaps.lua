@@ -93,7 +93,12 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- Toggle inlay hints globally (on by default; no-op on servers without support)
 map("n", "<leader>uh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "Toggle inlay hints" })
+end, { desc = "Toggle inlay hints", noremap = true })
+
+-- Toggle codelens (global)
+vim.keymap.set("n", "<leader>uc", function()
+	vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+end, { desc = "Toggle Codelens", noremap = true })
 
 -- Terminal toggle keymaps
 map({ "n", "t" }, "<leader>ft", base.toggle_terminal, { desc = "Toggle Terminal" })
