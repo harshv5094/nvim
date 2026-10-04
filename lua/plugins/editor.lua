@@ -57,7 +57,6 @@ return {
 			local fb_actions = extensions.file_browser.actions
 
 			-- Builtin keymaps
-			map("n", "<leader><space>", builtin.find_files, { desc = "Telescop -> Find Files" })
 			map("n", "<leader>/", builtin.live_grep, { desc = "Telescope -> Live Grep" })
 			map("n", "<leader>,", builtin.buffers, { desc = "Telescope -> Buffers" })
 			map("n", "<leader>sh", builtin.help_tags, { desc = "Telescope -> Help Tags" })
@@ -89,7 +88,7 @@ return {
 			end, { desc = "Telescope -> Config Files" })
 
 			-- Intelligent find file function
-			map("n", "<leader>sf", function()
+			map("n", "<leader><space>", function()
 				extensions.frecency.frecency({
 					prompt_title = "Find Files",
 					cwd = base_utils.project_root(),
@@ -181,9 +180,7 @@ return {
 						},
 					},
 					frecency = {
-						db_safe_mode = false,
-						db_validate_threshold = 0,
-						show_filter_column = false,
+						show_filter_column = true,
 					},
 					["ui-select"] = themes.get_dropdown({}),
 				},
