@@ -104,7 +104,6 @@ return {
 		lazy = false,
 		config = function()
 			local lualine = require("lualine")
-			local gruvbox = require("gruvbox")
 			lualine.setup({
 				options = {
 					icons_enabled = true,
@@ -126,7 +125,7 @@ return {
 								local name = vim.fs.basename(root)
 								return "󱉭 " .. name
 							end,
-							color = { fg = gruvbox.palette.bright_orange },
+							color = "Special",
 						},
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 						{ "filename" },
