@@ -114,7 +114,7 @@ opt.splitkeep = "screen" -- Keep text on screen when splitting
 ------------------------------------------------------------
 opt.confirm = true -- Ask to save before discarding modified buffers
 opt.backspace = { "start", "eol", "indent" } -- Allow backspace over everything
-opt.foldlevel = 1 -- Start with folds closed past level 1
+opt.foldlevel = 99 -- Start with folds close with
 opt.foldmethod = "indent" -- Fold based on indentation
 
 ------------------------------------------------------------
