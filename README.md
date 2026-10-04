@@ -27,7 +27,8 @@ lua/
     lazy.lua             -> bootstraps lazy.nvim and imports plugin specs
     options.lua          -> vim options
     keymaps.lua          -> global + LSP keymaps
-    autocmds.lua         -> autocommands (incl. LSP auto-enable, see below)
+    autocmds.lua         -> autocommands (incl. LSP auto-enable)
+    diagnostics.lua      -> vim.diagnostic config + virtual text toggle
   plugins/               -> plugin specs (one file per concern: lsp, ui, format, ...)
   utils/                 -> small helper modules
 lsp/                     -> per-server LSP configs (vim.lsp.Config), auto-loaded
