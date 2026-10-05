@@ -51,15 +51,12 @@ return {
 			mode = "cursor",
 			max_lines = 3,
 		},
-		config = function(_, opts)
-			local ts_context = require("treesitter-context")
-			ts_context.setup(opts)
-		end,
 	},
 
 	-- NOTE: Utility plugin to autoinstall treesitter parsers
 	{
 		"mks-h/treesitter-autoinstall.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		event = "BufReadPre",
 		opts = {
 			-- A list of *treesitter languages* to ignore.

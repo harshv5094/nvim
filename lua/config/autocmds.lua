@@ -45,6 +45,31 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 	end,
 })
 
+-- Move LSP keymaps into an LspAttach autocmd
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = augroup("UserLspAttach"),
+	callback = function(ev)
+		local function keymap(mode, lhs, rhs, desc)
+			vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+		end
+		-- LSP keymaps
+		keymap("n", "<leader>ca", vim.lsp.buf.code_action, "Code Actions")
+		keymap("n", "<leader>cr", vim.lsp.buf.rename, "Code Rename")
+		keymap({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run, "Run Codelens")
+		keymap("n", "gd", vim.lsp.buf.definition, "Goto Definition")
+
+		-- Toggle inlay hints globally (on by default; no-op on servers without support)
+		keymap("n", "<leader>uh", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, "Toggle inlay hints")
+
+		-- Toggle codelens (global)
+		keymap("n", "<leader>uc", function()
+			vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+		end, "Toggle Codelens")
+	end,
+})
+
 -- Auto clear prompt message after moving the cursor
 vim.api.nvim_create_autocmd("CursorMoved", {
 	group = augroup("ClearPrompt"),

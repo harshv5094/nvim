@@ -60,11 +60,7 @@ map(
 	{ desc = "Search and Replace (Buffer)", noremap = true }
 )
 
--- Rename whole variables in the buffer
-map("n", "rn", function()
-	vim.lsp.buf.rename()
-end, { desc = "rename buffer", silent = true })
-
+-- Special chmod keymaps for windows and mac only
 if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	-- chmod +x <current-buffer>
 	map("n", "<leader>fx", function()
@@ -77,29 +73,8 @@ if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	end, { desc = "chmod -x <current-buffer>" })
 end
 
--- LSP keymaps
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
-map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })
-map({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
-map("n", "K", vim.lsp.buf.hover, { desc = "Hover (alt)" })
-map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
-map("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
-map("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto T[y]pe Definition" })
-map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
-
 -- Quit while asking
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-
--- Toggle inlay hints globally (on by default; no-op on servers without support)
-map("n", "<leader>uh", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "Toggle inlay hints", noremap = true })
-
--- Toggle codelens (global)
-map("n", "<leader>uc", function()
-	vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
-end, { desc = "Toggle Codelens", noremap = true })
-
 -- Terminal toggle keymaps
 map({ "n", "t" }, "<C-`>", function()
 	base.terminal({ type = "split", size = 0.35, shared = true })

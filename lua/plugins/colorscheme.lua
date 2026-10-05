@@ -1,4 +1,5 @@
 return {
+	---@type GruvboxConfig
 	{
 		"ellisonleao/gruvbox.nvim",
 		lazy = false,

@@ -39,9 +39,7 @@ opt.fileencoding = "utf-8"
 ------------------------------------------------------------
 -- Clipboard
 ------------------------------------------------------------
--- Only set clipboard when not in SSH, so OSC 52 integration
--- works automatically over remote connections.
-opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus" -- Sync with system clipboard
+opt.clipboard = "unnamedplus" -- Sync with system clipboard
 
 ------------------------------------------------------------
 -- UI / Appearance
