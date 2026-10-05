@@ -18,7 +18,7 @@ return {
 		},
 	},
 
-	-- Keeping .env Secret
+	-- NOTE: Keeping .env Secret
 	{
 		"laytan/cloak.nvim",
 		event = "BufReadPre",

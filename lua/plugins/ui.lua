@@ -33,6 +33,8 @@ return {
 				{ "g", group = "goto" },
 				{ "gs", group = "surround" },
 				{ "z", group = "fold" },
+				{ "y", group = "yank" },
+				{ "d", group = "delete" },
 				{
 					"<leader>b",
 					group = "buffer",
@@ -118,15 +120,6 @@ return {
 						"diagnostics",
 					},
 					lualine_c = {
-						-- Lazyvim like folder design
-						{
-							function()
-								local root = vim.fn.getcwd()
-								local name = vim.fs.basename(root)
-								return "󱉭 " .. name
-							end,
-							color = "Special",
-						},
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 						{ "filename" },
 					},

@@ -12,21 +12,20 @@ return {
 	--NOTE: When shifting to v2 blink.lib is necessary uncomment it later after stable release
 	{
 		"saghen/blink.cmp",
-		event = { "InsertEnter" },
+		event = { "InsertEnter", "CmdlineEnter" },
 		version = "1.*",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			-- "saghen/blink.lib",
-			"saghen/blink.compat",
 		},
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
 			keymap = {
 				preset = "default",
-				["<S-Tab>"] = { "select_prev", "fallback" },
-				["<Tab>"] = { "select_next", "fallback" },
-				["<CR>"] = { "accept_and_enter", "fallback" },
+				["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+				["<CR>"] = { "accept", "fallback" },
 			},
 			appearance = {
 				nerd_font_variant = "mono",
@@ -45,6 +44,9 @@ return {
 			cmdline = {
 				enabled = true,
 			},
+			signature = {
+				enabled = true,
+			},
 			completion = {
 				documentation = {
 					auto_show = true,
@@ -58,9 +60,9 @@ return {
 	-- NOTE: Mason
 	{
 		"mason-org/mason.nvim",
-		version = "*", -- Installs the latest stable release of mason
 		cmd = "Mason",
 		config = function()
+			---@type MasonSettings
 			require("mason").setup({
 				ui = {
 					icons = {
@@ -75,7 +77,7 @@ return {
 			{
 				"<leader>cm",
 				"<CMD>Mason<CR>",
-				{ desc = "Mason" },
+				desc = "Mason",
 			},
 		},
 	},
@@ -85,6 +87,7 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "mason-org/mason.nvim" },
 		config = function()
+			---@type MasonToolInstallerSettings
 			require("mason-tool-installer").setup({
 				ensure_installed = {
 					-- Installed first: required by nvim-treesitter to
