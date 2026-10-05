@@ -17,7 +17,6 @@ return {
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			-- "saghen/blink.lib",
-			"moyiz/blink-emoji.nvim",
 			"saghen/blink.compat",
 		},
 		---@module 'blink.cmp'
@@ -33,19 +32,13 @@ return {
 				nerd_font_variant = "mono",
 			},
 			sources = {
-				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },
+				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
-					},
-					emoji = {
-						module = "blink-emoji",
-						name = "Emoji",
-						score_offset = 150, -- Tune by preference
-						opts = { insert = true }, -- Insert emoji (default) or complete its name
 					},
 				},
 			},
@@ -59,15 +52,6 @@ return {
 				},
 				trigger = {
 					prefetch_on_insert = true,
-				},
-				ghost_text = {
-					enabled = true,
-				},
-				list = {
-					selection = {
-						preselect = true,
-						auto_insert = true,
-					},
 				},
 			},
 			fuzzy = { implementation = "prefer_rust" },

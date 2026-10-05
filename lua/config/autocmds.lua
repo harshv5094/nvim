@@ -23,10 +23,12 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 		-- Extend neovim's client capabilities with the completion ones,
 		-- but only when blink.cmp is actually available (e.g. not when
 		-- plugin install was declined).
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		local capabilities
 		local ok, blink = pcall(require, "blink.cmp")
 		if ok then
-			capabilities = blink.get_lsp_capabilities(capabilities, true)
+			capabilities = blink.get_lsp_capabilities(nil, true)
+		else
+			capabilities = vim.lsp.protocol.make_client_capabilities()
 		end
 		vim.lsp.config("*", { capabilities = capabilities })
 
