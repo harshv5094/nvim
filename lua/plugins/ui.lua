@@ -204,7 +204,7 @@ return {
 	-- NOTE: An LSP Overlay progress
 	{
 		"j-hui/fidget.nvim",
-		event = "LspAttach",
+		event = { "LspAttach" },
 		opts = {
 			progress = {
 				display = {
@@ -212,9 +212,6 @@ return {
 					done_ttl = 2,
 					done_icon = "✔",
 				},
-			},
-			notification = {
-				override_vim_notify = false, -- don't take over vim.notify, keep it LSP-progress only
 			},
 		},
 	},
