@@ -98,6 +98,7 @@ return {
 					"lua-language-server",
 					"bash-language-server",
 					"yaml-language-server",
+					"json-lsp",
 					"taplo",
 
 					-- Formatters / linters
