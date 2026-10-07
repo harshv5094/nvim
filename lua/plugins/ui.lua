@@ -28,6 +28,7 @@ return {
 				{ "<leader>x", group = "diagnostics/quickfix" },
 				{ "<leader>t", group = "Terminal" },
 				{ "<leader>q", group = "quit/session" },
+				{ "<leader><Tab>", group = "tab" },
 				{ "[", group = "prev" },
 				{ "]", group = "next" },
 				{ "g", group = "goto" },
@@ -214,5 +215,26 @@ return {
 				},
 			},
 		},
+	},
+
+	-- NOTE: A stylish snazzy bufferline
+	{
+		"akinsho/bufferline.nvim",
+		event = "VeryLazy",
+		keys = {
+			{ "<M-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+			{ "<M-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+			{ "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+			{ "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+		},
+		opts = {
+			options = {
+				mode = "tabs", -- set to "tabs" to only show tabpages instead
+				always_show_bufferline = false,
+			},
+		},
+		config = function(_, opts)
+			require("bufferline").setup(opts)
+		end,
 	},
 }
