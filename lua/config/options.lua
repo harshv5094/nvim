@@ -87,7 +87,11 @@ opt.wrap = false -- Do not wrap long lines
 ------------------------------------------------------------
 -- Completion
 ------------------------------------------------------------
-opt.completeopt = "menu,menuone,noselect,popup" -- Completion menu behavior
+opt.completeopt = { "menu", "menuone", "noselect", "popup", "fuzzy" } -- Completion menu behavior
+opt.pumheight = 12 -- max items shown
+opt.pumwidth = 20 -- min width
+opt.pumblend = 10 -- transparency (0-100)
+opt.pumborder = "rounded" -- border for the menu (newer versions; check :h 'pumborder')
 
 ------------------------------------------------------------
 -- Files / Persistence
@@ -114,12 +118,6 @@ opt.confirm = true -- Ask to save before discarding modified buffers
 opt.backspace = { "start", "eol", "indent" } -- Allow backspace over everything
 opt.foldlevel = 99 -- Start with folds close with
 opt.foldmethod = "indent" -- Fold based on indentation
-
-------------------------------------------------------------
--- Popup & terminal UI
-------------------------------------------------------------
-opt.pumblend = 10 -- Transparency of popup menu (0-100)
-opt.pumheight = 5 -- Show at most 5 entries in the popup menu
 
 -- Undercurl support in supporting terminals
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
