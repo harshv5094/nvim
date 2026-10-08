@@ -27,4 +27,22 @@ return {
 			require("mini.icons").setup()
 		end,
 	},
+
+	-- NOTE: Notification plugin
+	{
+		"nvim-mini/mini.notify",
+		version = false,
+		event = "VeryLazy",
+		config = function()
+			require("mini.notify").setup({
+				lsp_progress = {
+					enable = false,
+				},
+			})
+			vim.keymap.set("n", "<Leader>n", function()
+				vim.cmd("tabedit")
+				MiniNotify.show_history()
+			end, { desc = "Notification history" })
+		end,
+	},
 }
