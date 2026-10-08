@@ -259,6 +259,19 @@ return {
       { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
       { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
     },
+		init = function()
+			-- HACK: Automatically delete oil.nvim buffer from the list just when you save any session
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "PersistenceSavePre",
+				callback = function()
+					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+						if vim.bo[buf].filetype == "oil" then
+							vim.api.nvim_buf_delete(buf, { force = true })
+						end
+					end
+				end,
+			})
+		end,
 	},
 
 	-- NOTE: A neovim buffer like file manager
