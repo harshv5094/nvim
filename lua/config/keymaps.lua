@@ -20,9 +20,6 @@ end, { expr = true, desc = "Escape and Clear hlsearch" })
 -- Delete a word backwards
 map("n", "dw", 'vb"_d', opts)
 
--- Redo - make U the opposite of u
-map("n", "U", "<C-r>", { desc = "Redo" })
-
 -- Save - Save from any mode
 map({ "i", "n", "v" }, "<C-s>", "<ESC><CMD>w<CR>", { desc = "Save" })
 
