@@ -78,4 +78,25 @@ return {
 			{ "<leader>gP", "<CMD>Git push --force-with-lease<CR>", desc = "Git push (force-with-lease)", },
 		},
 	},
+
+	{
+		"kdheepak/lazygit.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.g.lazygit_floating_window_scaling_factor = 0.85
+		end,
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		keys = {
+			{ "<leader>gg", "<Cmd>LazyGit<CR>", desc = "LazyGit" },
+		},
+	},
 }
