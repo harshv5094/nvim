@@ -1,6 +1,6 @@
 # My neovim config
 
-Lightweight version of my neovim configuration.
+Lightweight version of my neovim configuration. Inspired but not dependent on [LazyVim](https://lazyvim.org)
 
 ## Requirements
 
@@ -11,12 +11,25 @@ Lightweight version of my neovim configuration.
 ## Install
 
 ```bash
-git clone <your-repo-url> ~/.config/nvim
+git clone https://github.com/harshv5094/nvim ~/.config/nvim
 nvim
 ```
 
 On first launch, [lazy.nvim](https://github.com/folke/lazy.nvim) bootstraps itself and
 installs all plugins. Mason then auto-installs the LSP servers and tools declared in `lsp.lua`.
+
+If you want to use as an another neovim setup, I'll suggest you to set an `NVIM_APPNAME` alias for that, so you can experience this setup without removing your previous setup.
+
+To do this just run below commands
+
+> [!NOTE]
+> Just make sure the folder name and alias name is same, it's necessary for `NVIM_APPNAME` to work.
+
+```bash
+git clone https://github.com/harshv5094/nvim ~/.config/mnvim
+alias mnvim="NVIM_APPNAME=mnvim nvim"
+```
+
 
 ## Structure
 
