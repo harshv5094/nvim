@@ -52,6 +52,7 @@ opt.laststatus = 3 -- Single global statusline
 opt.cmdheight = 1 -- Height of the command line
 opt.showcmd = true -- Show partial commands in the last line
 opt.scrolloff = 10 -- Keep 10 lines visible above/below cursor
+opt.smoothscroll = true -- Setting up smooth scrolling
 opt.conceallevel = 2 -- Hide markup (e.g. bold/italic markers) unless it has substitutions
 -- opt.mouse = "a" -- Enable mouse support (disabled)
 
@@ -118,6 +119,15 @@ opt.confirm = true -- Ask to save before discarding modified buffers
 opt.backspace = { "start", "eol", "indent" } -- Allow backspace over everything
 opt.foldlevel = 99 -- Start with folds close with
 opt.foldmethod = "indent" -- Fold based on indentation
+opt.fillchars = {
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
+} -- Setting up fold characters symbols
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
 -- Undercurl support in supporting terminals
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
