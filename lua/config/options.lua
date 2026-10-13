@@ -129,6 +129,11 @@ opt.fillchars = {
 } -- Setting up fold characters symbols
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
+-- Create Lsp Log function
+vim.api.nvim_create_user_command("LspLog", function()
+	vim.cmd.split(vim.lsp.log.get_filename())
+end, { desc = "Open the Neovim lsp log file" })
+
 -- Undercurl support in supporting terminals
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
