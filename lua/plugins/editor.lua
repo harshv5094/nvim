@@ -115,9 +115,6 @@ return {
 					grouped = true,
 					previewer = true,
 					initial_mode = "normal",
-					-- layout_config = {
-					-- 	height = 0.60,
-					-- },
 				})
 			end, { desc = "File Browser" })
 
@@ -133,10 +130,7 @@ return {
 					layout_config = {
 						horizontal = {
 							prompt_position = "top",
-							previewer_width = 0.55,
 						},
-						width = 0.87,
-						height = 0.80,
 					},
 					sorting_strategy = "ascending",
 					winblend = 0,
