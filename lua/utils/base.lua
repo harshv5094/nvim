@@ -2,7 +2,7 @@ local state = {
 	buf = -1,
 	win = -1,
 	job_id = -1,
-	height_fraction = 0.35,
+	height_fraction = 0.4,
 }
 
 local M = {}
