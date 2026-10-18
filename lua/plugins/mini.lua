@@ -40,10 +40,15 @@ return {
 					enable = false,
 				},
 			})
-			vim.keymap.set("n", "<Leader>n", function()
-				vim.cmd("tabedit")
-				MiniNotify.show_history()
-			end, { desc = "Notification history" })
 		end,
+		keys = {
+			{
+				"<leader>n",
+				function()
+					MiniNotify.show_history()
+				end,
+				desc = "Notification History",
+			},
+		},
 	},
 }
