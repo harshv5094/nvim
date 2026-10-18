@@ -115,7 +115,7 @@ return {
 					globalstatus = true, -- A single statusline for every window
 				},
 				sections = {
-					lualine_a = { "mode" },
+					lualine_a = { { "mode", icon = "" } },
 					lualine_b = {
 						"branch",
 						"diagnostics",
