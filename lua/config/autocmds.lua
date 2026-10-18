@@ -46,27 +46,59 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 })
 
 -- Move LSP keymaps into an LspAttach autocmd
+-- Move LSP keymaps into an LspAttach autocmd
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup("UserLspAttach"),
 	callback = function(ev)
-		local function keymap(mode, lhs, rhs, desc)
-			vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+		-- Delete default keymaps (buffer-local, so only where LSP attached)
+		local default_keymaps = {
+			{ "n", "grn" },
+			{ "n", "gra" },
+			{ "n", "grr" },
+			{ "n", "gri" },
+			{ "n", "grt" },
+			{ "x", "gra" },
+		}
+
+		for _, map in ipairs(default_keymaps) do
+			pcall(vim.keymap.del, map[1], map[2])
 		end
-		-- LSP keymaps
-		keymap("n", "<leader>ca", vim.lsp.buf.code_action, "Code Actions")
-		keymap("n", "<leader>cr", vim.lsp.buf.rename, "Code Rename")
-		keymap({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run, "Run Codelens")
-		keymap("n", "gd", vim.lsp.buf.definition, "Goto Definition")
 
-		-- Toggle inlay hints globally (on by default; no-op on servers without support)
-		keymap("n", "<leader>uh", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end, "Toggle inlay hints")
+		-- Set custom LSP keymaps
+		local lsp_keymaps = {
+			{ "n", "gd", vim.lsp.buf.definition, "Goto Definition" },
+			{ "n", "gr", vim.lsp.buf.references, "References", nowait = true },
+			{ "n", "gI", vim.lsp.buf.implementation, "Goto Implementation" },
+			{ "n", "gy", vim.lsp.buf.type_definition, "Goto T[y]pe Definition" },
+			{ "n", "gD", vim.lsp.buf.declaration, "Goto Declaration" },
+			{ "n", "<leader>ca", vim.lsp.buf.code_action, "Code Actions" },
+			{ "n", "<leader>cr", vim.lsp.buf.rename, "Code Rename" },
+			{ { "n", "x" }, "<leader>cc", vim.lsp.codelens.run, "Run Codelens" },
+			{
+				"n",
+				"<leader>uh",
+				function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+				end,
+				"Toggle Inlay Hints",
+			},
+			{
+				"n",
+				"<leader>uc",
+				function()
+					vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+				end,
+				"Toggle Codelens",
+			},
+		}
 
-		-- Toggle codelens (global)
-		keymap("n", "<leader>uc", function()
-			vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
-		end, "Toggle Codelens")
+		for _, map in ipairs(lsp_keymaps) do
+			vim.keymap.set(map[1], map[2], map[3], {
+				buffer = ev.buf,
+				desc = map[4],
+				nowait = map.nowait,
+			})
+		end
 	end,
 })
 
