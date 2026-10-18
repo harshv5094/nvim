@@ -208,10 +208,17 @@ return {
 		event = { "LspAttach" },
 		opts = {
 			progress = {
+				poll_rate = 0, -- How and when to poll for progress messages
 				display = {
-					render_limit = 5,
-					done_ttl = 2,
-					done_icon = "✔",
+					render_limit = 16, -- How many LSP messages to show at once
+					done_ttl = 3, -- How long a message should persist after completion
+					done_icon = "✔", -- Icon shown when all LSP progress tasks are complete
+					done_style = "Statement", -- Highlight group for completed LSP tasks
+				},
+
+				lsp = {
+					progress_ringbuf_size = 0,
+					log_handler = false,
 				},
 			},
 		},
