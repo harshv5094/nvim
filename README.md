@@ -42,21 +42,7 @@ lua/
     keymaps.lua          -> global + LSP keymaps
     autocmds.lua         -> autocommands (incl. LSP auto-enable)
     diagnostics.lua      -> vim.diagnostic config + virtual text toggle
-  plugins/               -> plugin specs (one file per concern: lsp, ui, format, ...)
+  plugins/               -> plugin specs (one file per concern: lsp, ui, format, etc)
   utils/                 -> small helper modules
 lsp/                     -> per-server LSP configs (vim.lsp.Config), auto-loaded
 ```
-
-## Plugins at a glance
-
-Plugins are split into focused specs under `lua/plugins/`:
-
-- `lsp.lua` — `lazydev.nvim`, `blink.cmp` completion, Mason + tool installer
-- `format.lua` — `conform.nvim` (stylua for lua, shfmt for shell)
-- `lint.lua` — `nvim-lint` (luacheck for lua, shellcheck for shell)
-- `git.lua` — `gitsigns.nvim` + `vim-fugitive`
-- `editor.lua` — `telescope.nvim`, `oil.nvim`, `grug-far.nvim`, undotree, sessions, dial, lazygit
-- `ui.lua`, `00-colorscheme.lua`, `treesitter.lua`, `mini.lua`, `coding.lua` — UI, treesitter,
-  colorscheme, and editing conveniences
-
-Open `:Lazy` to see everything installed and `:Lazy help` for usage.
