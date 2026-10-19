@@ -46,7 +46,6 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 })
 
 -- Move LSP keymaps into an LspAttach autocmd
--- Move LSP keymaps into an LspAttach autocmd
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup("UserLspAttach"),
 	callback = function(ev)
