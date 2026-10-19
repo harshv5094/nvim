@@ -61,12 +61,21 @@ return {
 
 			-- Builtin keymaps
 			map("n", "<leader>/", builtin.live_grep, { desc = "Telescope -> Live Grep" })
-			map("n", "<leader>,", builtin.buffers, { desc = "Telescope -> Buffers" })
+			map("n", "<leader>,", builtin.buffers, { desc = "Telescope -> Switch Buffers" })
+			map("n", "<leader>sa", builtin.help_tags, { desc = "Telescope -> Autocmds" })
+			map("n", "<leader>sb", builtin.current_buffer_fuzzy_find, { desc = "Telescope -> Buffer Lines" })
+			map("n", "<leader>sd", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
+			map("n", "<leader>sg", builtin.grep_string, { desc = "Telescope -> Grep" })
 			map("n", "<leader>sh", builtin.help_tags, { desc = "Telescope -> Help Tags" })
-			map("n", "<leader>sm", builtin.man_pages, { desc = "Telescope -> Man Pages" })
+			map("n", "<leader>sH", builtin.highlights, { desc = "Telescope -> Search Highlights Group" })
+			map("n", "<leader>sj", builtin.jumplist, { desc = "Telescope -> Jumplist" })
 			map("n", "<leader>sk", builtin.keymaps, { desc = "Telescope -> Keymaps" })
+			map("n", "<leader>sl", builtin.loclist, { desc = "Telescope -> loclist" })
+			map("n", "<leader>sm", builtin.marks, { desc = "Telescope -> Jump to Mark" })
+			map("n", "<leader>sM", builtin.man_pages, { desc = "Telescope -> Man Pages" })
+			map("n", "<leader>so", builtin.vim_options, { desc = "Telescope -> Options" })
+			map("n", "<leader>sq", builtin.quickfix, { desc = "Telescope -> Quick Fix list" })
 			map("n", "<leader>:", builtin.command_history, { desc = "Telescope -> Command History" })
-			map("n", "<leader>xf", builtin.diagnostics, { desc = "Telescop -> Diagnostics" })
 			map("n", "<leader>gst", builtin.git_status, { desc = "Telescope -> Git Status" })
 
 			-- Keymap for searching lazy.nvim plugin directory
