@@ -1,6 +1,6 @@
 return {
 
-	-- Search/Replace in multiple files
+	-- NOTE: Search/Replace in multiple files
 	{
 		"MagicDuck/grug-far.nvim",
 		opts = { headerMaxWidth = 80 },
@@ -286,6 +286,17 @@ return {
 			},
 			-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
 			delete_to_trash = true,
+			-- Window-local options to use for oil buffers
+			win_options = {
+				wrap = false,
+				signcolumn = "no",
+				cursorcolumn = false,
+				foldcolumn = "0",
+				spell = false,
+				list = false,
+				conceallevel = 3,
+				concealcursor = "nvic",
+			},
 			columns = {
 				-- "permissions",
 				-- "size",

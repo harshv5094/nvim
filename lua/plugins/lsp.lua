@@ -1,4 +1,6 @@
 return {
+
+	-- NOTE: Quick and Lazy setup for lua
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
@@ -57,7 +59,7 @@ return {
 		},
 	},
 
-	-- NOTE: Mason
+	-- NOTE: lsp/lint/formatter installation library
 	{
 		"mason-org/mason.nvim",
 		cmd = "Mason",
