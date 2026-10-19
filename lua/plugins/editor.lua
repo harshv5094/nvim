@@ -187,6 +187,13 @@ return {
 						},
 					},
 					frecency = {
+						auto_validate = true,
+						db_root = vim.fn.stdpath("state"),
+						db_safe_mode = true,
+						hide_current_buffer = false,
+						matcher = "fuzzy",
+						path_display = { "filename_first" },
+						ignore_patterns = { "*/.git", "*/.git/*", "*/.DS_Store", "node_modules" },
 						show_filter_column = true,
 					},
 					["ui-select"] = themes.get_dropdown({}),
