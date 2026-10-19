@@ -1,5 +1,3 @@
-local base_utils = require("utils.base")
-
 return {
 
 	-- Search/Replace in multiple files
@@ -46,7 +44,6 @@ return {
 				event = "VeryLazy",
 			},
 			"nvim-telescope/telescope-file-browser.nvim",
-			"nvim-telescope/telescope-frecency.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
@@ -60,6 +57,7 @@ return {
 			local fb_actions = extensions.file_browser.actions
 
 			-- Builtin keymaps
+			map("n", "<leader><space>", builtin.find_files, { desc = "Telescope -> Find Files" })
 			map("n", "<leader>/", builtin.live_grep, { desc = "Telescope -> Live Grep" })
 			map("n", "<leader>,", builtin.buffers, { desc = "Telescope -> Switch Buffers" })
 			map("n", "<leader>sa", builtin.help_tags, { desc = "Telescope -> Autocmds" })
@@ -98,16 +96,6 @@ return {
 					cwd = vim.fn.stdpath("config"),
 				})
 			end, { desc = "Telescope -> Config Files" })
-
-			-- Intelligent find file function
-			map("n", "<leader><space>", function()
-				extensions.frecency.frecency({
-					prompt_title = "Find Files",
-					cwd = base_utils.project_root(),
-					workspace = "CWD",
-					hidden = true,
-				})
-			end, { desc = "Telescope -> Find files" })
 
 			-- Telescope file browser
 			map("n", "sf", function()
@@ -186,16 +174,6 @@ return {
 							},
 						},
 					},
-					frecency = {
-						auto_validate = true,
-						db_root = vim.fn.stdpath("state"),
-						db_safe_mode = true,
-						hide_current_buffer = false,
-						matcher = "fuzzy",
-						path_display = { "filename_first" },
-						ignore_patterns = { "*/.git", "*/.git/*", "*/.DS_Store", "node_modules" },
-						show_filter_column = true,
-					},
 					["ui-select"] = themes.get_dropdown({}),
 				},
 			})
@@ -203,7 +181,6 @@ return {
 			telescope.load_extension("fzf")
 			telescope.load_extension("file_browser")
 			telescope.load_extension("ui-select")
-			telescope.load_extension("frecency")
 		end,
 	},
 
