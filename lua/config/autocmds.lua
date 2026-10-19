@@ -58,6 +58,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ "n", "gri" },
 			{ "n", "grt" },
 			{ "x", "gra" },
+			{ { "n", "x" }, "grx" },
 		}
 
 		for _, map in ipairs(default_keymaps) do
