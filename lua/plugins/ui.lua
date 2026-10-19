@@ -5,6 +5,10 @@ return {
 		event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
+		keys = {
+			{ "<leader>st", "<CMD>TodoTelescope<cr>", desc = "Todo" },
+			{ "<leader>sT", "<CMD>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+		},
 	},
 
 	-- NOTE: folke's which key implemetation for neovim
@@ -26,7 +30,6 @@ return {
 				{ "<leader>gl", group = "log" },
 				{ "<leader>u", group = "ui" },
 				{ "<leader>f", group = "file/find" },
-				{ "<leader>x", group = "diagnostics/quickfix" },
 				{ "<leader>t", group = "Terminal" },
 				{ "<leader>q", group = "quit/session" },
 				{ "<leader><Tab>", group = "tab" },
