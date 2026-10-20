@@ -49,6 +49,15 @@ map("n", "<C-d>", "<C-d>zz", opts)
 -- My custom git initialization function
 map("n", "<leader>gi", git.init, { desc = "Git init", noremap = true })
 
+-- Open the current file/line or the repository in the browser
+map({ "n", "v" }, "<leader>gB", function()
+	git.browse()
+end, { desc = "Git Browse (file/line)" })
+
+map("n", "<leader>gb", function()
+	git.browse({ what = "repo" })
+end, { desc = "Git Browse (repo)" })
+
 -- String auto replace
 map(
 	"n",
