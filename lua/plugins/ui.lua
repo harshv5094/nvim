@@ -31,6 +31,7 @@ return {
 				{ "<leader>u", group = "ui" },
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>t", group = "Terminal" },
+				{ "<leader>x", group = "diagnostics/quickfix" },
 				{ "<leader>q", group = "quit/session" },
 				{ "<leader><Tab>", group = "tab" },
 				{ "[", group = "prev" },
