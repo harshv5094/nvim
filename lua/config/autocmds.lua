@@ -74,22 +74,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ "n", "<leader>ca", vim.lsp.buf.code_action, "Code Actions" },
 			{ "n", "<leader>cr", vim.lsp.buf.rename, "Code Rename" },
 			{ { "n", "x" }, "<leader>cc", vim.lsp.codelens.run, "Run Codelens" },
-			{
-				"n",
-				"<leader>uh",
-				function()
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-				end,
-				"Toggle Inlay Hints",
-			},
-			{
-				"n",
-				"<leader>uc",
-				function()
-					vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
-				end,
-				"Toggle Codelens",
-			},
 		}
 
 		for _, map in ipairs(lsp_keymaps) do
