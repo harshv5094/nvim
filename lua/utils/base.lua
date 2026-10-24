@@ -120,6 +120,10 @@ function M.lazygit_toggle()
 		border = "rounded",
 	})
 	vim.w[win].lazygit = true
+	-- 'wrap' is off globally, but terminal UIs (e.g. lazygit's commit pager)
+	-- assume soft wrapping. Without it, Neovim scrolls the window horizontally
+	-- and the terminal content shifts sideways.
+	vim.wo[win].wrap = true
 
 	if fresh then
 		vim.fn.jobstart({ "lazygit" }, { term = true })
