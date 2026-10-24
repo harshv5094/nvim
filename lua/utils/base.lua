@@ -86,6 +86,62 @@ function M.chmod(mode)
 	end
 end
 
+function M.lazygit_toggle()
+	-- Hide the float if it's already open
+	for _, w in ipairs(vim.api.nvim_list_wins()) do
+		if vim.w[w].lazygit then
+			vim.api.nvim_win_hide(w)
+			return
+		end
+	end
+
+	-- Usable rows: total minus cmdline, tabline, and statusline
+	local tabline = vim.o.showtabline > 0 and 1 or 0
+	local statusline = vim.o.laststatus > 0 and 1 or 0
+	local rows = vim.o.lines - vim.o.cmdheight - tabline - statusline
+
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(rows * 0.8)
+
+	-- Reuse the buffer (and running lazygit) if it still exists
+	local buf = vim.g.lazygit_buf
+	local fresh = not (buf and vim.api.nvim_buf_is_valid(buf))
+	if fresh then
+		buf = vim.api.nvim_create_buf(false, true)
+		vim.g.lazygit_buf = buf
+		-- Deleting the buffer also closes any window showing it
+		vim.api.nvim_create_autocmd("TermClose", {
+			buffer = buf,
+			once = true,
+			callback = function()
+				vim.g.lazygit_buf = nil
+				vim.api.nvim_buf_delete(buf, { force = true })
+			end,
+		})
+	end
+
+	-- The border adds 2 rows and 2 columns outside width and height
+	local win = vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		row = tabline + math.floor((rows - height - 2) / 2),
+		col = math.floor((vim.o.columns - width - 2) / 2),
+		style = "minimal",
+		border = "rounded",
+	})
+	vim.w[win].lazygit = true
+
+	if fresh then
+		vim.fn.jobstart({ "lazygit" }, { term = true })
+	else
+		-- Match the terminal's PTY size to the float on every reopen
+		vim.fn.jobresize(vim.bo[buf].channel, width, height)
+	end
+
+	vim.cmd("startinsert")
+end
+
 -- A lua function to get project root dir path (whether you are in git path or not)
 function M.project_root()
 	return vim.fs.root(0, { ".git" }) or vim.fs.root(vim.fn.getcwd(), { ".git" }) or vim.fn.getcwd()

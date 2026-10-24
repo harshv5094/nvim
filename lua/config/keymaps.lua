@@ -97,6 +97,9 @@ if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	end, { desc = "chmod -x <current-buffer>" })
 end
 
+-- Toggle Lazygit
+map({ "n", "t" }, "<leader>gg", base.lazygit_toggle, { desc = "Toggle LazyGit float" })
+
 -- Quit while asking
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
