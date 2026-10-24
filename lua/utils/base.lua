@@ -7,60 +7,49 @@ local state = {
 
 local M = {}
 
--- A lua function to toggle terminal horizontally
 function M.toggle_terminal()
-	-- If the window exists and is valid, hide it
-	if vim.api.nvim_win_is_valid(state.win) then
-		vim.api.nvim_win_hide(state.win)
-		state.win = -1
+	-- Hide the terminal window if it's open
+	local win = vim.fn.bufwinid(state.buf)
+	if win ~= -1 then
+		vim.api.nvim_win_hide(win)
 		return
 	end
 
-	-- Calculate the terminal height as a fraction of the screen
-	local total_height = vim.o.lines
-	local term_height = math.max(1, math.floor(total_height * state.height_fraction))
+	local height = math.max(1, math.floor(vim.o.lines * state.height_fraction))
 
-	-- Create or reuse buffer
-	if not vim.api.nvim_buf_is_valid(state.buf) then
-		state.buf = vim.api.nvim_create_buf(false, true) -- No file, scratch buffer
+	-- Create the buffer on first use or after the shell has exited
+	local fresh = not vim.api.nvim_buf_is_valid(state.buf)
+	if fresh then
+		state.buf = vim.api.nvim_create_buf(false, true)
 	end
 
-	-- Open the window at the bottom
+	-- Open the split at the bottom and show the terminal buffer in it
 	vim.cmd("botright split")
-	state.win = vim.api.nvim_get_current_win()
-	vim.api.nvim_win_set_height(state.win, term_height)
-	vim.api.nvim_win_set_buf(state.win, state.buf)
+	vim.api.nvim_win_set_buf(0, state.buf)
+	vim.api.nvim_win_set_height(0, height)
+	vim.wo.number = false
+	vim.wo.relativenumber = false
+	vim.wo.signcolumn = "no"
 
-	-- Restart the terminal only if there is no live job (covers dead/exited shells)
-	local job_running = state.job_id ~= -1 and vim.fn.jobwait({ state.job_id }, 0)[1] == -1
-	if not job_running then
-		state.job_id = vim.fn.jobstart(vim.o.shell, {
-			term = true,
-			on_exit = function(_, code, _)
-				vim.schedule(function()
-					-- Guard: only close if the window is still showing our terminal buffer
-					if vim.api.nvim_win_is_valid(state.win) and vim.api.nvim_win_get_buf(state.win) == state.buf then
-						vim.api.nvim_win_hide(state.win)
-					end
-					state.win = -1
-					state.job_id = -1
-					-- Clean up the buffer so next toggle starts fresh
-					if vim.api.nvim_buf_is_valid(state.buf) then
-						vim.api.nvim_buf_delete(state.buf, { force = true })
-						state.buf = -1
-					end
-					if code ~= 0 then
-						vim.notify("Terminal exited with code " .. code, vim.log.levels.WARN, { title = "Terminal" })
-					end
-				end)
-			end,
-		})
-		vim.wo[state.win].number = false
-		vim.wo[state.win].relativenumber = false
-		vim.wo[state.win].signcolumn = "no"
+	if fresh or vim.bo[state.buf].channel == 0 then
+		vim.api.nvim_buf_call(state.buf, function()
+			vim.fn.jobstart(vim.o.shell, {
+				term = true,
+				on_exit = function(_, code)
+					vim.schedule(function()
+						-- Deleting the buffer closes any window showing it
+						if vim.api.nvim_buf_is_valid(state.buf) then
+							vim.api.nvim_buf_delete(state.buf, { force = true })
+						end
+						if code ~= 0 then
+							vim.notify("Terminal exited with code " .. code, vim.log.levels.WARN, { title = "Terminal" })
+						end
+					end)
+				end,
+			})
+		end)
 	end
 
-	-- Enter insert mode automatically
 	vim.cmd("startinsert")
 end
 
