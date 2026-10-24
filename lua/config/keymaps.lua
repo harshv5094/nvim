@@ -84,6 +84,9 @@ map("n", "<leader>uc", function()
 	vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
 end, { desc = "Toggle Codelens" })
 
+-- Message history via the ui2 pager window (replaces mini.notify)
+map("n", "<leader>n", "<CMD>messages<CR>", { desc = "Message History", noremap = true })
+
 -- Special chmod keymaps for windows and mac only
 if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	-- chmod +x <current-buffer>
